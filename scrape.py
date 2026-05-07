@@ -17,14 +17,6 @@ from zoneinfo import ZoneInfo
 BASE_URL = "https://anc.apm.activecommunities.com/seattle/rest/reservation/resource/availability/daily"
 
 COURTS = {
-    "Amy Yee Tennis Center (AYTC)": [
-        {"id": 279, "name": "Court 01"},
-        {"id": 280, "name": "Court 02"},
-        {"id": 281, "name": "Court 03"},
-        {"id": 282, "name": "Court 04"},
-        {"id": 283, "name": "Court 05"},
-        {"id": 284, "name": "Court 06"},
-    ],
     "Bryant Playground": [
         {"id": 1325, "name": "Court 01"},
         {"id": 1326, "name": "Court 02"},
