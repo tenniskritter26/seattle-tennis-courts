@@ -3,448 +3,644 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seattle Tennis Court Reservations</title>
+  <title>Seattle Tennis Courts</title>
   <style>
     :root {
-      --green:      #2e7d32;
-      --green-light:#a5d6a7;
-      --red:        #c62828;
-      --red-light:  #ef9a9a;
-      --gray:       #e0e0e0;
-      --bg:         #f5f5f5;
-      --card-bg:    #ffffff;
-      --text:       #212121;
-      --text-muted: #757575;
-      --border:     #e0e0e0;
-      --shadow:     0 1px 4px rgba(0,0,0,0.10);
+      --green-dark:   #1b5e20;
+      --green-mid:    #2e7d32;
+      --green-bright: #43a047;
+      --green-light:  #c8e6c9;
+      --red-dark:     #b71c1c;
+      --red-mid:      #c62828;
+      --red-light:    #ffcdd2;
+      --yellow:       #f9a825;
+      --yellow-light: #fff9c4;
+      --bg:           #f1f5f1;
+      --card:         #ffffff;
+      --border:       #dde8dd;
+      --text:         #1a2e1a;
+      --text-muted:   #5a7a5a;
+      --shadow:       0 2px 8px rgba(0,0,0,0.08);
+      --shadow-card:  0 1px 4px rgba(0,0,0,0.06);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-size: 15px;
-      line-height: 1.5;
+      min-height: 100vh;
     }
 
-    /* ── Header ── */
+    /* ── Header ─────────────────────────────────────────────────── */
     header {
-      background: var(--green);
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
       color: #fff;
-      padding: 20px 24px 16px;
+      padding: 22px 20px 18px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
     }
-    header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.3px; }
-    header .subtitle { font-size: 0.9rem; opacity: 0.85; margin-top: 2px; }
-    header .meta {
-      font-size: 0.78rem;
-      opacity: 0.70;
-      margin-top: 6px;
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .header-left h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .header-left h1 .icon { font-size: 1.2rem; }
+    .header-left .date-line {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      margin-top: 3px;
+      font-weight: 500;
+    }
+    .header-left .meta-line {
+      font-size: 0.72rem;
+      opacity: 0.60;
+      margin-top: 4px;
+    }
+    .header-stats {
+      display: flex;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .hstat {
+      text-align: center;
+      background: rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 6px 12px;
+      min-width: 58px;
+    }
+    .hstat-num {
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .hstat-num.red    { color: #ffcdd2; }
+    .hstat-num.green  { color: #a5d6a7; }
+    .hstat-label {
+      font-size: 0.62rem;
+      opacity: 0.75;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
     }
 
-    /* ── Summary bar ── */
-    .summary-bar {
-      display: flex;
-      gap: 12px;
-      padding: 12px 24px;
+    /* ── Legend ─────────────────────────────────────────────────── */
+    .legend-bar {
       background: #fff;
       border-bottom: 1px solid var(--border);
+      padding: 8px 20px;
+      display: flex;
+      gap: 18px;
+      justify-content: center;
       flex-wrap: wrap;
     }
-    .stat {
+    .legend-item {
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
     }
-    .stat strong { color: var(--text); font-size: 1.1rem; }
-    .stat-dot {
-      width: 10px; height: 10px; border-radius: 50%;
+    .swatch {
+      width: 20px; height: 11px; border-radius: 3px;
+    }
+    .sw-free     { background: var(--green-light); border: 1.5px solid var(--green-bright); }
+    .sw-reserved { background: var(--red-light);   border: 1.5px solid var(--red-mid); }
+    .sw-outside  { background: #e8e8e8;             border: 1.5px solid #bbb; }
+    .sw-now      { background: var(--yellow);       border: 1.5px solid #e65100; width: 3px; height: 14px; border-radius: 2px; }
+
+    /* ── Best bets ───────────────────────────────────────────────── */
+    .best-bets {
+      max-width: 860px;
+      margin: 16px auto 0;
+      padding: 0 16px;
+    }
+    .best-bets-card {
+      background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+      border: 1.5px solid #a5d6a7;
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .best-bets-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--green-dark);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .best-bets-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .best-chip {
+      background: #fff;
+      border: 1.5px solid var(--green-bright);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 0.78rem;
+      color: var(--green-dark);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .best-chip .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green-bright);
       flex-shrink: 0;
     }
-    .dot-reserved { background: var(--red); }
-    .dot-free     { background: var(--green); }
-
-    /* ── Legend ── */
-    .legend {
-      display: flex;
-      gap: 20px;
-      padding: 8px 24px;
-      font-size: 0.78rem;
+    .no-free {
+      font-size: 0.82rem;
       color: var(--text-muted);
-      background: #fafafa;
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-    .legend-item { display: flex; align-items: center; gap: 6px; }
-    .legend-swatch {
-      width: 18px; height: 12px; border-radius: 3px;
-    }
-    .swatch-free     { background: var(--green-light); border: 1px solid var(--green); }
-    .swatch-reserved { background: var(--red-light);   border: 1px solid var(--red); }
-    .swatch-outside  { background: var(--gray);         border: 1px solid #bdbdbd; }
-
-    /* ── Main content ── */
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px 16px 40px;
+      font-style: italic;
     }
 
-    /* ── Park card ── */
+    /* ── Parks container ─────────────────────────────────────────── */
+    .parks-container {
+      max-width: 860px;
+      margin: 16px auto 40px;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* ── Park card ───────────────────────────────────────────────── */
     .park-card {
-      background: var(--card-bg);
-      border-radius: 8px;
+      background: var(--card);
+      border-radius: 12px;
       box-shadow: var(--shadow);
-      margin-bottom: 16px;
       overflow: hidden;
+      border: 1px solid var(--border);
     }
     .park-header {
-      background: #1b5e20;
-      color: #fff;
-      padding: 10px 16px;
-      font-weight: 600;
-      font-size: 0.95rem;
+      background: linear-gradient(90deg, #2e7d32, #388e3c);
+      padding: 11px 16px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 8px;
     }
-    .park-badge {
-      font-size: 0.72rem;
-      font-weight: 500;
-      background: rgba(255,255,255,0.2);
-      padding: 2px 8px;
+    .park-name {
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: -0.1px;
+    }
+    .park-pill {
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 3px 9px;
       border-radius: 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
+    .pill-all-free  { background: #a5d6a7; color: #1b5e20; }
+    .pill-some-res  { background: #ffcdd2; color: #b71c1c; }
+    .pill-all-res   { background: #ef9a9a; color: #7f0000; }
 
-    /* ── Court row ── */
+    /* ── Court row ───────────────────────────────────────────────── */
     .court-row {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
+      padding: 11px 16px 10px;
+      border-bottom: 1px solid #f0f4f0;
     }
     .court-row:last-child { border-bottom: none; }
 
+    .court-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 7px;
+      gap: 8px;
+    }
     .court-name {
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.78rem;
+      font-weight: 700;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.4px;
-      margin-bottom: 6px;
+      letter-spacing: 0.5px;
     }
+    .court-status-text {
+      font-size: 0.74rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .status-free     { color: var(--green-mid); }
+    .status-reserved { color: var(--red-mid); }
 
-    /* ── Timeline ── */
-    .timeline-wrap {
+    /* ── Timeline ────────────────────────────────────────────────── */
+    .tl-wrap { position: relative; }
+    .tl-bar {
       position: relative;
-      margin-bottom: 4px;
-    }
-    .timeline-bar {
-      position: relative;
-      height: 28px;
-      background: var(--gray);
-      border-radius: 4px;
+      height: 30px;
+      background: #eeeeee;
+      border-radius: 6px;
       overflow: hidden;
     }
-    .timeline-segment {
+    .tl-seg {
       position: absolute;
       top: 0;
       height: 100%;
+      transition: opacity 0.15s;
     }
-    .seg-free     { background: var(--green-light); border-right: 1px solid var(--green); }
-    .seg-reserved { background: var(--red-light);   border-right: 1px solid var(--red); }
-
-    .timeline-labels {
+    .tl-seg:hover { opacity: 0.8; cursor: default; }
+    .tl-free     { background: var(--green-light); border-right: 1.5px solid var(--green-bright); }
+    .tl-reserved { background: var(--red-light);   border-left: 1.5px solid var(--red-mid); }
+    .tl-now {
+      position: absolute;
+      top: -2px;
+      bottom: -2px;
+      width: 2.5px;
+      background: var(--yellow);
+      border-radius: 2px;
+      z-index: 5;
+      box-shadow: 0 0 6px rgba(249,168,37,0.7);
+    }
+    .tl-labels {
       display: flex;
       justify-content: space-between;
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      padding: 2px 0 0;
+      padding: 3px 0 0;
       user-select: none;
     }
-
-    .court-summary {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 4px;
+    .tl-labels span {
+      font-size: 0.62rem;
+      color: #999;
+      width: 0;
+      text-align: center;
+      white-space: nowrap;
     }
-    .court-summary .reserved-tag {
-      color: var(--red);
+    .tl-labels span:first-child { text-align: left; }
+    .tl-labels span:last-child  { text-align: right; }
+
+    /* ── Reserved text detail ────────────────────────────────────── */
+    .reserved-detail {
+      margin-top: 5px;
+      font-size: 0.72rem;
+      color: var(--red-dark);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .res-block {
+      background: var(--red-light);
+      border: 1px solid #ef9a9a;
+      border-radius: 4px;
+      padding: 1px 6px;
       font-weight: 600;
     }
-    .court-summary .free-tag {
-      color: var(--green);
+    .free-detail {
+      margin-top: 5px;
+      font-size: 0.72rem;
+      color: var(--green-dark);
       font-weight: 600;
     }
 
-    /* ── Error / loading states ── */
-    #loading {
+    /* ── Loading / error ─────────────────────────────────────────── */
+    #loading-msg {
       text-align: center;
       padding: 60px 20px;
       color: var(--text-muted);
+      font-size: 0.95rem;
     }
     #error-msg {
       background: #ffebee;
-      color: var(--red);
-      border: 1px solid var(--red-light);
-      border-radius: 6px;
+      color: var(--red-dark);
+      border: 1px solid #ef9a9a;
+      border-radius: 8px;
       padding: 16px;
-      margin: 20px 0;
+      margin: 20px 16px;
+      font-size: 0.85rem;
       display: none;
     }
-    .no-data-note {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-style: italic;
-      padding: 8px 0;
-    }
 
-    /* ── Footer ── */
+    /* ── Footer ──────────────────────────────────────────────────── */
     footer {
       text-align: center;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      padding: 20px;
+      padding: 20px 16px 32px;
       border-top: 1px solid var(--border);
     }
-    footer a { color: var(--green); text-decoration: none; }
+    footer a { color: var(--green-mid); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
-    @media (max-width: 500px) {
-      header { padding: 16px; }
-      main    { padding: 12px 10px 32px; }
-      .summary-bar { padding: 10px 12px; }
-      .legend      { padding: 8px 12px; }
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      header { padding: 16px 14px 14px; }
+      .header-left h1 { font-size: 1.15rem; }
+      .hstat { padding: 5px 8px; min-width: 48px; }
+      .hstat-num { font-size: 1.2rem; }
+      .parks-container, .best-bets { padding: 0 10px; }
       .park-header { padding: 10px 12px; }
-      .court-row   { padding: 10px 12px; }
+      .court-row { padding: 10px 12px 9px; }
     }
   </style>
 </head>
 <body>
 
+<!-- Header injected by JS -->
 <header>
-  <h1>Seattle Tennis Courts</h1>
-  <div class="subtitle" id="header-date">Loading…</div>
-  <div class="meta" id="header-meta"></div>
+  <div class="header-inner">
+    <div class="header-left">
+      <h1><span class="icon">🎾</span> Seattle Tennis Courts</h1>
+      <div class="date-line" id="hdr-date">Loading…</div>
+      <div class="meta-line" id="hdr-meta"></div>
+    </div>
+    <div class="header-stats" id="hdr-stats" style="display:none">
+      <div class="hstat">
+        <div class="hstat-num red" id="stat-res">–</div>
+        <div class="hstat-label">Reserved</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num green" id="stat-free">–</div>
+        <div class="hstat-label">Free</div>
+      </div>
+    </div>
+  </div>
 </header>
 
-<div class="summary-bar" id="summary-bar" style="display:none">
-  <div class="stat">
-    <span class="stat-dot dot-reserved"></span>
-    <strong id="stat-reserved">–</strong> courts with reservations
-  </div>
-  <div class="stat">
-    <span class="stat-dot dot-free"></span>
-    <strong id="stat-free">–</strong> courts fully free
-  </div>
-  <div class="stat" style="margin-left:auto">
-    <strong id="stat-total">–</strong>&nbsp;total courts tracked
+<div class="legend-bar">
+  <div class="legend-item"><div class="swatch sw-free"></div>Available</div>
+  <div class="legend-item"><div class="swatch sw-reserved"></div>Reserved</div>
+  <div class="legend-item"><div class="swatch sw-outside"></div>Outside window</div>
+  <div class="legend-item"><div class="swatch sw-now"></div>Current time</div>
+</div>
+
+<div class="best-bets" id="best-bets-wrap" style="display:none">
+  <div class="best-bets-card">
+    <div class="best-bets-title">✅ Fully free 8am – 4pm</div>
+    <div class="best-bets-grid" id="best-bets-grid"></div>
   </div>
 </div>
 
-<div class="legend">
-  <div class="legend-item"><div class="legend-swatch swatch-free"></div> Available (no reservation)</div>
-  <div class="legend-item"><div class="legend-swatch swatch-reserved"></div> Reserved</div>
-  <div class="legend-item"><div class="legend-swatch swatch-outside"></div> Outside 8am–4pm window</div>
-</div>
-
-<main>
-  <div id="loading">Loading reservation data…</div>
+<div class="parks-container" id="parks-container">
+  <div id="loading-msg">Loading reservation data…</div>
   <div id="error-msg"></div>
-  <div id="parks-container"></div>
-</main>
+</div>
 
 <footer>
-  Data from <a href="https://anc.apm.activecommunities.com/seattle/reservation/search?facilityTypeIds=39%2C115" target="_blank" rel="noopener">Seattle Parks &amp; Recreation</a> via Active.com ·
-  Captured nightly at 11:55 PM · Reload after midnight for next-day data
+  Data from <a href="https://anc.apm.activecommunities.com/seattle/reservation/search?facilityTypeIds=39%2C115" target="_blank" rel="noopener">Seattle Parks &amp; Recreation</a> · Captured nightly at 11:49 PM · <a href="https://github.com/tenniskriitter26/seattle-tennis-courts/actions" target="_blank" rel="noopener">Check run history</a>
 </footer>
 
 <script>
-// ── Constants ──────────────────────────────────────────────────────────────
-const WINDOW_START = 8 * 60;   // 8:00 AM in minutes
-const WINDOW_END   = 16 * 60;  // 4:00 PM in minutes
-const WINDOW_SPAN  = WINDOW_END - WINDOW_START;  // 480 minutes
+const WIN_START = 8 * 60;
+const WIN_END   = 16 * 60;
+const WIN_SPAN  = WIN_END - WIN_START;
 
-// Hour labels for the timeline axis (8am through 4pm)
-const HOUR_LABELS = ["8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm"];
+const HOURS = ["8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm"];
 
-// ── Helpers ────────────────────────────────────────────────────────────────
-function pct(minutes) {
-  return ((minutes - WINDOW_START) / WINDOW_SPAN * 100).toFixed(2) + "%";
+function pct(min) {
+  return ((min - WIN_START) / WIN_SPAN * 100).toFixed(3) + "%";
 }
-
-function fmtDate(isoDate) {
-  const [y, m, d] = isoDate.split("-").map(Number);
-  const days  = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+function widthPct(a, b) {
+  return ((b - a) / WIN_SPAN * 100).toFixed(3) + "%";
+}
+function fmtDate(iso) {
+  const [y,m,d] = iso.split("-").map(Number);
+  const days   = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   const months = ["January","February","March","April","May","June",
                   "July","August","September","October","November","December"];
-  const dt = new Date(y, m - 1, d);
-  return `${days[dt.getDay()]}, ${months[m-1]} ${d}, ${y}`;
+  return `${days[new Date(y,m-1,d).getDay()]}, ${months[m-1]} ${d}`;
+}
+function nowMinutes() {
+  const n = new Date();
+  return n.getHours() * 60 + n.getMinutes();
+}
+function todayISO() {
+  const n = new Date();
+  return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}-${String(n.getDate()).padStart(2,"0")}`;
 }
 
-// ── Build timeline bar ─────────────────────────────────────────────────────
-function buildTimeline(availableSlots, reservedSlots) {
-  // availableSlots and reservedSlots both have { start_min, end_min }
+// ── Timeline bar ───────────────────────────────────────────────────
+function buildBar(avail, reserved, isToday) {
   const bar = document.createElement("div");
-  bar.className = "timeline-bar";
+  bar.className = "tl-bar";
 
-  // Paint available segments (green)
-  for (const slot of availableSlots) {
-    const s = Math.max(slot.start_min, WINDOW_START);
-    const e = Math.min(slot.end_min,   WINDOW_END);
-    if (s >= e) continue;
-    const seg = document.createElement("div");
-    seg.className = "timeline-segment seg-free";
-    seg.style.left  = pct(s);
-    seg.style.width = ((e - s) / WINDOW_SPAN * 100).toFixed(2) + "%";
-    seg.title = `Available ${minToDisplay(s)}–${minToDisplay(e)}`;
-    bar.appendChild(seg);
+  // green available segments
+  for (const s of avail) {
+    const a = Math.max(s.start_min, WIN_START);
+    const b = Math.min(s.end_min,   WIN_END);
+    if (a >= b) continue;
+    const el = document.createElement("div");
+    el.className = "tl-seg tl-free";
+    el.style.left  = pct(a);
+    el.style.width = widthPct(a, b);
+    el.title = `Available ${s.start}–${s.end}`;
+    bar.appendChild(el);
   }
-
-  // Paint reserved segments (red) on top
-  for (const slot of reservedSlots) {
-    const s = slot.start_min;
-    const e = slot.end_min;
-    const seg = document.createElement("div");
-    seg.className = "timeline-segment seg-reserved";
-    seg.style.left  = pct(s);
-    seg.style.width = ((e - s) / WINDOW_SPAN * 100).toFixed(2) + "%";
-    seg.title = `Reserved ${slot.start}–${slot.end}`;
-    bar.appendChild(seg);
+  // red reserved segments
+  for (const r of reserved) {
+    const el = document.createElement("div");
+    el.className = "tl-seg tl-reserved";
+    el.style.left  = pct(r.start_min);
+    el.style.width = widthPct(r.start_min, r.end_min);
+    el.title = `Reserved ${r.start}–${r.end}`;
+    bar.appendChild(el);
   }
-
+  // current-time needle
+  if (isToday) {
+    const now = nowMinutes();
+    if (now >= WIN_START && now <= WIN_END) {
+      const needle = document.createElement("div");
+      needle.className = "tl-now";
+      needle.style.left = pct(now);
+      needle.title = "Current time";
+      bar.appendChild(needle);
+    }
+  }
   return bar;
 }
 
-function minToDisplay(min) {
-  const h = Math.floor(min / 60);
-  const m = min % 60;
-  const suffix = h < 12 ? "am" : "pm";
-  const displayH = h > 12 ? h - 12 : (h === 0 ? 12 : h);
-  return m === 0 ? `${displayH}${suffix}` : `${displayH}:${String(m).padStart(2,"0")}${suffix}`;
-}
-
-function buildHourLabels() {
+function buildLabels() {
   const row = document.createElement("div");
-  row.className = "timeline-labels";
-  HOUR_LABELS.forEach(label => {
-    const span = document.createElement("span");
-    span.textContent = label;
-    row.appendChild(span);
+  row.className = "tl-labels";
+  HOURS.forEach(h => {
+    const s = document.createElement("span");
+    s.textContent = h;
+    row.appendChild(s);
   });
   return row;
 }
 
-// ── Build summary text ─────────────────────────────────────────────────────
-function buildSummaryText(courtData) {
-  const p = document.createElement("div");
-  p.className = "court-summary";
-
-  if (courtData.status === "error") {
-    p.innerHTML = `<span class="reserved-tag">Error fetching data</span>`;
-    return p;
-  }
-  if (courtData.status === "no_data" || courtData.status === 7) {
-    p.innerHTML = `<span style="font-style:italic">Data unavailable</span>`;
-    return p;
-  }
-
-  const reserved = courtData.reserved_in_window;
-  if (!reserved || reserved.length === 0) {
-    p.innerHTML = `<span class="free-tag">No reservations 8am–4pm</span>`;
-  } else {
-    const blocks = reserved.map(r => `${r.start}–${r.end}`).join(", ");
-    p.innerHTML = `<span class="reserved-tag">Reserved:</span> ${blocks}`;
-  }
-  return p;
-}
-
-// ── Build one court row ────────────────────────────────────────────────────
-function buildCourtRow(courtName, courtData) {
+// ── Court row ──────────────────────────────────────────────────────
+function buildCourtRow(name, data, isToday) {
   const row = document.createElement("div");
   row.className = "court-row";
 
-  const nameEl = document.createElement("div");
-  nameEl.className = "court-name";
-  nameEl.textContent = courtName;
-  row.appendChild(nameEl);
+  const reserved = data.reserved_in_window || [];
+  const avail    = data.available_slots    || [];
 
+  // top line: name + status
+  const top = document.createElement("div");
+  top.className = "court-top";
+  const nm = document.createElement("div");
+  nm.className = "court-name";
+  nm.textContent = name;
+  top.appendChild(nm);
+
+  const st = document.createElement("div");
+  if (data.status === "error") {
+    st.className = "court-status-text status-reserved";
+    st.textContent = "Data error";
+  } else if (reserved.length === 0) {
+    st.className = "court-status-text status-free";
+    st.textContent = "Free all day ✓";
+  } else {
+    st.className = "court-status-text status-reserved";
+    st.textContent = reserved.length === 1 ? "1 reservation" : `${reserved.length} reservations`;
+  }
+  top.appendChild(st);
+  row.appendChild(top);
+
+  // timeline
   const wrap = document.createElement("div");
-  wrap.className = "timeline-wrap";
-  wrap.appendChild(buildTimeline(courtData.available_slots || [], courtData.reserved_in_window || []));
-  wrap.appendChild(buildHourLabels());
+  wrap.className = "tl-wrap";
+  wrap.appendChild(buildBar(avail, reserved, isToday));
+  wrap.appendChild(buildLabels());
   row.appendChild(wrap);
 
-  row.appendChild(buildSummaryText(courtData));
+  // detail tags
+  if (reserved.length > 0) {
+    const detail = document.createElement("div");
+    detail.className = "reserved-detail";
+    for (const r of reserved) {
+      const chip = document.createElement("span");
+      chip.className = "res-block";
+      chip.textContent = `${r.start} – ${r.end}`;
+      detail.appendChild(chip);
+    }
+    row.appendChild(detail);
+  } else if (data.status !== "error") {
+    const fd = document.createElement("div");
+    fd.className = "free-detail";
+    fd.textContent = "No reservations 8am – 4pm";
+    row.appendChild(fd);
+  }
+
   return row;
 }
 
-// ── Build one park card ────────────────────────────────────────────────────
-function buildParkCard(parkName, parkData) {
+// ── Park card ──────────────────────────────────────────────────────
+function buildParkCard(parkName, parkData, isToday) {
   const card = document.createElement("div");
   card.className = "park-card";
 
-  // Count reserved courts in this park
   const courts = Object.entries(parkData.courts);
-  const reservedCount = courts.filter(([, d]) => d.reserved_in_window && d.reserved_in_window.length > 0).length;
-  const badgeText = reservedCount === 0
-    ? `All ${courts.length} free`
-    : `${reservedCount}/${courts.length} reserved`;
+  const resCount  = courts.filter(([,d]) => d.reserved_in_window?.length > 0).length;
+  const freeCount = courts.length - resCount;
 
   const hdr = document.createElement("div");
   hdr.className = "park-header";
-  hdr.innerHTML = `<span>${parkName}</span><span class="park-badge">${badgeText}</span>`;
+
+  const nm = document.createElement("div");
+  nm.className = "park-name";
+  nm.textContent = parkName;
+  hdr.appendChild(nm);
+
+  const pill = document.createElement("span");
+  pill.className = "park-pill";
+  if (resCount === 0) {
+    pill.className += " pill-all-free";
+    pill.textContent = `All ${courts.length} free`;
+  } else if (freeCount === 0) {
+    pill.className += " pill-all-res";
+    pill.textContent = `All ${courts.length} reserved`;
+  } else {
+    pill.className += " pill-some-res";
+    pill.textContent = `${freeCount} free · ${resCount} reserved`;
+  }
+  hdr.appendChild(pill);
   card.appendChild(hdr);
 
   for (const [courtName, courtData] of courts) {
-    card.appendChild(buildCourtRow(courtName, courtData));
+    card.appendChild(buildCourtRow(courtName, courtData, isToday));
   }
   return card;
 }
 
-// ── Main render ────────────────────────────────────────────────────────────
+// ── Best bets section ──────────────────────────────────────────────
+function buildBestBets(parks) {
+  const chips = [];
+  for (const [parkName, parkData] of Object.entries(parks)) {
+    for (const [courtName, data] of Object.entries(parkData.courts)) {
+      if ((data.reserved_in_window || []).length === 0 && data.status !== "error") {
+        chips.push({ park: parkName, court: courtName });
+      }
+    }
+  }
+  const grid = document.getElementById("best-bets-grid");
+  if (chips.length === 0) {
+    grid.innerHTML = `<span class="no-free">All tracked courts have at least one reservation today.</span>`;
+  } else {
+    chips.forEach(({ park, court }) => {
+      const chip = document.createElement("div");
+      chip.className = "best-chip";
+      chip.innerHTML = `<span class="dot"></span>${park} — ${court}`;
+      grid.appendChild(chip);
+    });
+  }
+  document.getElementById("best-bets-wrap").style.display = "block";
+}
+
+// ── Main ───────────────────────────────────────────────────────────
 async function render() {
-  const loading   = document.getElementById("loading");
-  const errorMsg  = document.getElementById("error-msg");
   const container = document.getElementById("parks-container");
+  const errEl     = document.getElementById("error-msg");
 
   try {
-    const resp = await fetch("data/reservations.json?nocache=" + Date.now());
+    const resp = await fetch("data/reservations.json?t=" + Date.now());
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const data = await resp.json();
 
-    loading.style.display = "none";
+    document.getElementById("loading-msg").style.display = "none";
 
-    // Header
-    document.getElementById("header-date").textContent =
+    // header
+    document.getElementById("hdr-date").textContent =
       data.date ? `Reservations for ${fmtDate(data.date)}` : "No data yet";
-    document.getElementById("header-meta").textContent =
+    document.getElementById("hdr-meta").textContent =
       data.captured_at_display ? `Captured: ${data.captured_at_display}` : "";
 
-    // Summary bar
     if (data.summary) {
-      document.getElementById("stat-reserved").textContent = data.summary.courts_with_reservations;
-      document.getElementById("stat-free").textContent     = data.summary.courts_fully_free;
-      document.getElementById("stat-total").textContent    = data.summary.total_courts;
-      document.getElementById("summary-bar").style.display = "flex";
+      document.getElementById("stat-res").textContent  = data.summary.courts_with_reservations;
+      document.getElementById("stat-free").textContent = data.summary.courts_fully_free;
+      document.getElementById("hdr-stats").style.display = "flex";
     }
 
-    // Parks
-    if (!data.parks || Object.keys(data.parks).length === 0) {
-      container.innerHTML = `<div class="no-data-note">No reservation data available yet. The scraper runs at 11:55 PM nightly.</div>`;
+    if (!data.parks || !Object.keys(data.parks).length) {
+      container.innerHTML += `<p style="padding:20px;color:#777;font-style:italic">No data yet — the scraper runs at 11:49 PM nightly.</p>`;
       return;
     }
 
+    const isToday = data.date === todayISO();
+    buildBestBets(data.parks);
+
     for (const [parkName, parkData] of Object.entries(data.parks)) {
-      container.appendChild(buildParkCard(parkName, parkData));
+      container.appendChild(buildParkCard(parkName, parkData, isToday));
     }
 
   } catch (err) {
-    loading.style.display = "none";
-    errorMsg.style.display = "block";
-    errorMsg.textContent = `Could not load reservation data: ${err.message}. ` +
-      `If running locally, serve this folder with a web server (e.g. python3 -m http.server).`;
+    document.getElementById("loading-msg").style.display = "none";
+    errEl.style.display = "block";
+    errEl.textContent = `Could not load data: ${err.message}. If running locally, use: python3 -m http.server 8765`;
   }
 }
 
