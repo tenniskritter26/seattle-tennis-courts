@@ -6,19 +6,21 @@
 # Setup:
 #   1. Create a GitHub Personal Access Token (PAT) with "Contents: Read & Write"
 #      at https://github.com/settings/tokens
-#   2. Add the following line to ~/.zshenv (create the file if it doesn't exist):
-#         export GITHUB_TOKEN="your_token_here"
+#   2. Save your token in a .env file in this folder:
+#         GITHUB_TOKEN="your_token_here"
 #   3. Make this script executable:  chmod +x nightly_scrape.sh
-#   4. Add to cron (run: crontab -e):
-#         49 23 * * * /bin/bash /path/to/nightly_scrape.sh >> /tmp/court_scrape.log 2>&1
+#   4. Add to cron (run: env EDITOR=nano crontab -e):
+#         49 23 * * * /bin/bash "/Users/mrnicholas/Documents/Court Reservation app/nightly_scrape.sh" >> /tmp/court_scrape.log 2>&1
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
-# Load GITHUB_TOKEN from environment (set in ~/.zshenv)
-source ~/.zshenv 2>/dev/null || true
+# Load GITHUB_TOKEN from .env file in the project folder
+if [ -f "$SCRIPT_DIR/.env" ]; then
+  export $(grep -v '^#' "$SCRIPT_DIR/.env" | xargs)
+fi
 
 echo "=== Nightly scrape starting at $(date) ==="
 
