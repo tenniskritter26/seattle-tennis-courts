@@ -104,6 +104,59 @@
       margin-top: 2px;
     }
 
+    /* ── Tabs ───────────────────────────────────────────────────── */
+    .tab-bar {
+      background: #fff;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      justify-content: center;
+    }
+    .tab-btn {
+      flex: 1;
+      max-width: 200px;
+      padding: 12px 24px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.15s, border-color 0.15s;
+      letter-spacing: 0.2px;
+    }
+    .tab-btn:hover { color: var(--green-mid); }
+    .tab-btn.active {
+      color: var(--green-dark);
+      border-bottom-color: var(--green-dark);
+    }
+
+    /* ── Tomorrow notice ────────────────────────────────────────── */
+    .tomorrow-notice {
+      max-width: 860px;
+      margin: 12px auto 0;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+    .refresh-btn {
+      background: var(--green-mid);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 11px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .refresh-btn:hover { background: var(--green-dark); }
+
     /* ── Legend ─────────────────────────────────────────────────── */
     .legend-bar {
       background: #fff;
@@ -321,21 +374,19 @@
     }
 
     /* ── Loading / error ─────────────────────────────────────────── */
-    #loading-msg {
+    .loading-msg {
       text-align: center;
       padding: 60px 20px;
       color: var(--text-muted);
       font-size: 0.95rem;
     }
-    #error-msg {
+    .error-msg {
       background: #ffebee;
       color: var(--red-dark);
       border: 1px solid #ef9a9a;
       border-radius: 8px;
       padding: 16px;
-      margin: 20px 16px;
       font-size: 0.85rem;
-      display: none;
     }
 
     /* ── Footer ──────────────────────────────────────────────────── */
@@ -363,7 +414,6 @@
 </head>
 <body>
 
-<!-- Header injected by JS -->
 <header>
   <div class="header-inner">
     <div class="header-left">
@@ -384,6 +434,11 @@
   </div>
 </header>
 
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="today" onclick="switchTab('today')">Today</button>
+  <button class="tab-btn" data-tab="tomorrow" onclick="switchTab('tomorrow')">Tomorrow</button>
+</div>
+
 <div class="legend-bar">
   <div class="legend-item"><div class="swatch sw-free"></div>Available</div>
   <div class="legend-item"><div class="swatch sw-reserved"></div>Reserved</div>
@@ -391,20 +446,22 @@
   <div class="legend-item"><div class="swatch sw-now"></div>Current time</div>
 </div>
 
+<div id="tomorrow-notice" class="tomorrow-notice" style="display:none">
+  <span>Reservations populate throughout the day — refresh anytime for the latest.</span>
+  <button class="refresh-btn" onclick="renderTab('tomorrow')">↻ Refresh</button>
+</div>
+
 <div class="best-bets" id="best-bets-wrap" style="display:none">
   <div class="best-bets-card">
-    <div class="best-bets-title">✅ Fully free 8am – 4pm</div>
+    <div class="best-bets-title" id="best-bets-title">✅ Fully free 8am – 4pm</div>
     <div class="best-bets-grid" id="best-bets-grid"></div>
   </div>
 </div>
 
-<div class="parks-container" id="parks-container">
-  <div id="loading-msg">Loading reservation data…</div>
-  <div id="error-msg"></div>
-</div>
+<div class="parks-container" id="parks-container"></div>
 
 <footer>
-  Data from <a href="https://anc.apm.activecommunities.com/seattle/reservation/search?facilityTypeIds=39%2C115" target="_blank" rel="noopener">Seattle Parks &amp; Recreation</a> · Captured nightly at 11:49 PM · <a href="https://github.com/tenniskriitter26/seattle-tennis-courts/actions" target="_blank" rel="noopener">Check run history</a>
+  Data from <a href="https://anc.apm.activecommunities.com/seattle/reservation/search?facilityTypeIds=39%2C115" target="_blank" rel="noopener">Seattle Parks &amp; Recreation</a> · Today captured nightly at 11:49 PM · Tomorrow preview refreshes every 2 hrs · <a href="https://github.com/tenniskritter26/seattle-tennis-courts/actions" target="_blank" rel="noopener">Check run history</a>
 </footer>
 
 <script>
@@ -413,6 +470,8 @@ const WIN_END   = 16 * 60;
 const WIN_SPAN  = WIN_END - WIN_START;
 
 const HOURS = ["8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm"];
+
+let activeTab = 'today';
 
 function pct(min) {
   return ((min - WIN_START) / WIN_SPAN * 100).toFixed(3) + "%";
@@ -436,12 +495,21 @@ function todayISO() {
   return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}-${String(n.getDate()).padStart(2,"0")}`;
 }
 
+// ── Tab switching ──────────────────────────────────────────────────
+function switchTab(tab) {
+  if (activeTab === tab) return;
+  activeTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.tab === tab);
+  });
+  renderTab(tab);
+}
+
 // ── Timeline bar ───────────────────────────────────────────────────
 function buildBar(avail, reserved, isToday) {
   const bar = document.createElement("div");
   bar.className = "tl-bar";
 
-  // green available segments
   for (const s of avail) {
     const a = Math.max(s.start_min, WIN_START);
     const b = Math.min(s.end_min,   WIN_END);
@@ -453,7 +521,6 @@ function buildBar(avail, reserved, isToday) {
     el.title = `Available ${s.start}–${s.end}`;
     bar.appendChild(el);
   }
-  // red reserved segments
   for (const r of reserved) {
     const el = document.createElement("div");
     el.className = "tl-seg tl-reserved";
@@ -462,7 +529,6 @@ function buildBar(avail, reserved, isToday) {
     el.title = `Reserved ${r.start}–${r.end}`;
     bar.appendChild(el);
   }
-  // current-time needle
   if (isToday) {
     const now = nowMinutes();
     if (now >= WIN_START && now <= WIN_END) {
@@ -495,7 +561,6 @@ function buildCourtRow(name, data, isToday) {
   const reserved = data.reserved_in_window || [];
   const avail    = data.available_slots    || [];
 
-  // top line: name + status
   const top = document.createElement("div");
   top.className = "court-top";
   const nm = document.createElement("div");
@@ -517,14 +582,12 @@ function buildCourtRow(name, data, isToday) {
   top.appendChild(st);
   row.appendChild(top);
 
-  // timeline
   const wrap = document.createElement("div");
   wrap.className = "tl-wrap";
   wrap.appendChild(buildBar(avail, reserved, isToday));
   wrap.appendChild(buildLabels());
   row.appendChild(wrap);
 
-  // detail tags
   if (reserved.length > 0) {
     const detail = document.createElement("div");
     detail.className = "reserved-detail";
@@ -584,7 +647,7 @@ function buildParkCard(parkName, parkData, isToday) {
 }
 
 // ── Best bets section ──────────────────────────────────────────────
-function buildBestBets(parks) {
+function buildBestBets(parks, tab) {
   const chips = [];
   for (const [parkName, parkData] of Object.entries(parks)) {
     for (const [courtName, data] of Object.entries(parkData.courts)) {
@@ -593,9 +656,15 @@ function buildBestBets(parks) {
       }
     }
   }
+  const titleEl = document.getElementById("best-bets-title");
+  titleEl.textContent = tab === 'tomorrow'
+    ? '✅ Fully free tomorrow 8am – 4pm'
+    : '✅ Fully free 8am – 4pm';
+
   const grid = document.getElementById("best-bets-grid");
+  grid.innerHTML = '';
   if (chips.length === 0) {
-    grid.innerHTML = `<span class="no-free">All tracked courts have at least one reservation today.</span>`;
+    grid.innerHTML = `<span class="no-free">All tracked courts have at least one reservation.</span>`;
   } else {
     chips.forEach(({ park, court }) => {
       const chip = document.createElement("div");
@@ -607,50 +676,79 @@ function buildBestBets(parks) {
   document.getElementById("best-bets-wrap").style.display = "block";
 }
 
-// ── Main ───────────────────────────────────────────────────────────
-async function render() {
-  const container = document.getElementById("parks-container");
-  const errEl     = document.getElementById("error-msg");
+// ── Render ─────────────────────────────────────────────────────────
+async function renderTab(tab) {
+  const file = tab === 'tomorrow' ? 'data/tomorrow.json' : 'data/reservations.json';
+  const container = document.getElementById('parks-container');
+
+  // Show tomorrow notice / hide it
+  document.getElementById('tomorrow-notice').style.display = tab === 'tomorrow' ? 'flex' : 'none';
+
+  // Reset UI
+  container.innerHTML = '';
+  const loadMsg = document.createElement('div');
+  loadMsg.className = 'loading-msg';
+  loadMsg.textContent = 'Loading reservation data…';
+  container.appendChild(loadMsg);
+  document.getElementById('hdr-stats').style.display = 'none';
+  document.getElementById('best-bets-wrap').style.display = 'none';
+  document.getElementById('best-bets-grid').innerHTML = '';
+  document.getElementById('hdr-date').textContent = 'Loading…';
+  document.getElementById('hdr-meta').textContent = '';
 
   try {
-    const resp = await fetch("data/reservations.json?t=" + Date.now());
+    const resp = await fetch(file + '?t=' + Date.now());
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const data = await resp.json();
 
-    document.getElementById("loading-msg").style.display = "none";
+    loadMsg.remove();
 
-    // header
-    document.getElementById("hdr-date").textContent =
-      data.date ? `Reservations for ${fmtDate(data.date)}` : "No data yet";
-    document.getElementById("hdr-meta").textContent =
-      data.captured_at_display ? `Captured: ${data.captured_at_display}` : "";
+    // Header date + meta
+    const dateLabel = tab === 'tomorrow' ? 'Preview for' : 'Reservations for';
+    document.getElementById('hdr-date').textContent =
+      data.date ? `${dateLabel} ${fmtDate(data.date)}` : 'No data yet';
+    document.getElementById('hdr-meta').textContent = tab === 'tomorrow'
+      ? (data.captured_at_display ? `Last updated: ${data.captured_at_display}` : '')
+      : (data.captured_at_display ? `Captured: ${data.captured_at_display}` : '');
 
     if (data.summary) {
-      document.getElementById("stat-res").textContent  = data.summary.courts_with_reservations;
-      document.getElementById("stat-free").textContent = data.summary.courts_fully_free;
-      document.getElementById("hdr-stats").style.display = "flex";
+      document.getElementById('stat-res').textContent  = data.summary.courts_with_reservations;
+      document.getElementById('stat-free').textContent = data.summary.courts_fully_free;
+      document.getElementById('hdr-stats').style.display = 'flex';
     }
 
     if (!data.parks || !Object.keys(data.parks).length) {
-      container.innerHTML += `<p style="padding:20px;color:#777;font-style:italic">No data yet — the scraper runs at 11:49 PM nightly.</p>`;
+      const msg = document.createElement('div');
+      msg.className = 'loading-msg';
+      msg.style.fontStyle = 'italic';
+      msg.textContent = tab === 'tomorrow'
+        ? "Tomorrow's preview will appear within 2 hours of the first automated refresh."
+        : 'No data yet — the scraper runs at 11:49 PM nightly.';
+      container.appendChild(msg);
       return;
     }
 
     const isToday = data.date === todayISO();
-    buildBestBets(data.parks);
+    buildBestBets(data.parks, tab);
 
     for (const [parkName, parkData] of Object.entries(data.parks)) {
       container.appendChild(buildParkCard(parkName, parkData, isToday));
     }
 
   } catch (err) {
-    document.getElementById("loading-msg").style.display = "none";
-    errEl.style.display = "block";
-    errEl.textContent = `Could not load data: ${err.message}. If running locally, use: python3 -m http.server 8765`;
+    loadMsg.remove();
+    const errEl = document.createElement('div');
+    errEl.className = 'error-msg';
+    if (tab === 'tomorrow' && err.message.includes('404')) {
+      errEl.textContent = "Tomorrow's preview isn't ready yet — it will be generated automatically every 2 hours.";
+    } else {
+      errEl.textContent = `Could not load data: ${err.message}`;
+    }
+    container.appendChild(errEl);
   }
 }
 
-render();
+renderTab('today');
 </script>
 </body>
 </html>

@@ -6,7 +6,9 @@ on:
     - cron: '49 6 * * *'
     # 11:49 PM PST (UTC-8, early November through mid-March)
     - cron: '49 7 * * *'
-  # Allow manual trigger for testing
+    # Tomorrow preview — every 2 hours throughout the day
+    - cron: '0 */2 * * *'
+  # Allow manual trigger (updates reservations.json)
   workflow_dispatch:
 
 jobs:
@@ -28,7 +30,16 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run scraper
-        run: python scrape.py
+        run: |
+          SCHED="${{ github.event.schedule }}"
+          EVENT="${{ github.event_name }}"
+          if [[ "$SCHED" == "49 6 * * *" || "$SCHED" == "49 7 * * *" || "$EVENT" == "workflow_dispatch" ]]; then
+            echo "Nightly run → data/reservations.json"
+            python scrape.py --output data/reservations.json
+          else
+            echo "Daytime run → data/tomorrow.json"
+            python scrape.py --output data/tomorrow.json
+          fi
         env:
           TZ: America/Los_Angeles
 
@@ -36,6 +47,6 @@ jobs:
         run: |
           git config user.name  "Tennis Bot"
           git config user.email "tennis-bot@users.noreply.github.com"
-          git add data/reservations.json
-          git diff --staged --quiet || git commit -m "Update reservations $(python -c "from datetime import date, timedelta; print(date.today() + timedelta(days=1))")"
+          git add data/reservations.json data/tomorrow.json
+          git diff --staged --quiet || git commit -m "Update data $(python -c "import datetime; print(datetime.date.today())")"
           git push

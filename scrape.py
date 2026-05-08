@@ -7,6 +7,7 @@ The API shows available (bookable) time slots; the gaps between them are reserva
 Run nightly at 11:30 PM Pacific so "tomorrow" data becomes "today" data after midnight.
 """
 
+import argparse
 import json
 import os
 import time
@@ -153,6 +154,11 @@ def fetch_availability(resource_id, date_str):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", default="data/reservations.json",
+                        help="Path to write JSON output")
+    args = parser.parse_args()
+
     pacific = ZoneInfo("America/Los_Angeles")
     now = datetime.now(pacific)
     target_date = (now + timedelta(days=1)).date()
@@ -230,11 +236,11 @@ def main():
     }
 
     os.makedirs("data", exist_ok=True)
-    with open("data/reservations.json", "w") as f:
+    with open(args.output, "w") as f:
         json.dump(result, f, indent=2)
 
     print(f"\nDone. {total_reserved}/{total_courts} courts have reservations.")
-    print(f"Saved → data/reservations.json")
+    print(f"Saved → {args.output}")
 
 
 if __name__ == "__main__":

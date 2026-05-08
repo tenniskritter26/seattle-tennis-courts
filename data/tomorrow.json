@@ -1,0 +1,12 @@
+{
+  "date": null,
+  "captured_at": null,
+  "captured_at_display": null,
+  "window": "8:00am – 4:00pm",
+  "parks": {},
+  "summary": {
+    "total_courts": 0,
+    "courts_with_reservations": 0,
+    "courts_fully_free": 0
+  }
+}
