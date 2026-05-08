@@ -2,13 +2,10 @@ name: Scrape Tennis Court Reservations
 
 on:
   schedule:
-    # 11:49 PM PDT (UTC-7, mid-March through early November)
-    - cron: '49 6 * * *'
-    # 11:49 PM PST (UTC-8, early November through mid-March)
-    - cron: '49 7 * * *'
     # Tomorrow preview — every 2 hours throughout the day
+    # Nightly capture of reservations.json is handled by Mac cron + direct GitHub API push
     - cron: '0 */2 * * *'
-  # Allow manual trigger (updates reservations.json)
+  # Manual trigger — refreshes both today and tomorrow (useful for recovery)
   workflow_dispatch:
 
 jobs:
@@ -31,16 +28,15 @@ jobs:
 
       - name: Run scraper
         run: |
-          SCHED="${{ github.event.schedule }}"
           EVENT="${{ github.event_name }}"
-          if [[ "$SCHED" == "49 6 * * *" || "$SCHED" == "49 7 * * *" ]]; then
-            # Nightly: pre-populate today (after midnight) and tomorrow
-            echo "Nightly run → reservations.json (days-ahead=1) + tomorrow.json (days-ahead=2)"
-            python scrape.py --output data/reservations.json --days-ahead 1
-            python scrape.py --output data/tomorrow.json --days-ahead 2
+          if [[ "$EVENT" == "workflow_dispatch" ]]; then
+            # Manual trigger: refresh both today and tomorrow for recovery
+            echo "Manual run → reservations.json (days-ahead=0) + tomorrow.json (days-ahead=1)"
+            python scrape.py --output data/reservations.json --days-ahead 0
+            python scrape.py --output data/tomorrow.json --days-ahead 1
           else
-            # Daytime or manual: refresh tomorrow preview only (today is locked — no same-day reservations)
-            echo "Daytime/manual run → tomorrow.json (days-ahead=1)"
+            # 2-hourly daytime: refresh tomorrow preview only
+            echo "Daytime run → tomorrow.json (days-ahead=1)"
             python scrape.py --output data/tomorrow.json --days-ahead 1
           fi
         env:

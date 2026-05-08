@@ -153,12 +153,48 @@ def fetch_availability(resource_id, date_str):
     return resp.json()
 
 
+def push_to_github(file_path, content_str):
+    """Commit a file directly to GitHub via the API. Requires GITHUB_TOKEN env var."""
+    import base64
+    token = os.environ.get("GITHUB_TOKEN")
+    repo  = os.environ.get("GITHUB_REPO", "tenniskritter26/seattle-tennis-courts")
+    if not token:
+        print("  ✗ GITHUB_TOKEN not set — skipping push")
+        return
+
+    headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github.v3+json",
+    }
+    api_url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
+
+    # Fetch current file SHA (required by GitHub API to update an existing file)
+    resp = requests.get(api_url, headers=headers)
+    sha = resp.json().get("sha") if resp.ok else None
+
+    payload = {
+        "message": f"Update data {datetime.now(ZoneInfo('America/Los_Angeles')).date()}",
+        "content": base64.b64encode(content_str.encode()).decode(),
+        "committer": {"name": "Tennis Bot", "email": "tennis-bot@users.noreply.github.com"},
+    }
+    if sha:
+        payload["sha"] = sha
+
+    resp = requests.put(api_url, headers=headers, json=payload)
+    if resp.ok:
+        print(f"  ✓ Pushed {file_path} to GitHub")
+    else:
+        print(f"  ✗ GitHub push failed: {resp.status_code} {resp.text}")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default="data/reservations.json",
                         help="Path to write JSON output")
     parser.add_argument("--days-ahead", type=int, default=1,
                         help="Days ahead to scrape: 0=today, 1=tomorrow, 2=day after tomorrow")
+    parser.add_argument("--push", action="store_true",
+                        help="Push the output file directly to GitHub via API after saving")
     args = parser.parse_args()
 
     pacific = ZoneInfo("America/Los_Angeles")
@@ -238,11 +274,16 @@ def main():
     }
 
     os.makedirs("data", exist_ok=True)
+    content_str = json.dumps(result, indent=2)
     with open(args.output, "w") as f:
-        json.dump(result, f, indent=2)
+        f.write(content_str)
 
     print(f"\nDone. {total_reserved}/{total_courts} courts have reservations.")
     print(f"Saved → {args.output}")
+
+    if args.push:
+        print("Pushing to GitHub…")
+        push_to_github(args.output, content_str)
 
 
 if __name__ == "__main__":
