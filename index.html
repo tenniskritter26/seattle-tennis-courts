@@ -39,14 +39,18 @@
       min-height: 100vh;
     }
 
+    /* ── Sticky wrapper (header + tabs scroll together) ─────────── */
+    .sticky-top {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
     /* ── Header ─────────────────────────────────────────────────── */
     header {
       background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
       color: #fff;
       padding: 22px 20px 18px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
       box-shadow: 0 2px 12px rgba(0,0,0,0.25);
     }
     .header-inner {
@@ -66,6 +70,14 @@
       gap: 8px;
     }
     .header-left h1 .icon { font-size: 1.2rem; }
+    .header-subtitle {
+      font-size: 0.72rem;
+      opacity: 0.65;
+      margin-top: 1px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
     .header-left .date-line {
       font-size: 0.95rem;
       opacity: 0.9;
@@ -283,6 +295,11 @@
       border-bottom: 1px solid #f0f4f0;
     }
     .court-row:last-child { border-bottom: none; }
+    .court-row-free {
+      background: #f2faf2;
+      border-left: 3px solid var(--green-bright);
+      padding-left: 13px;
+    }
 
     .court-top {
       display: flex;
@@ -324,15 +341,19 @@
     .tl-seg:hover { opacity: 0.8; cursor: default; }
     .tl-free     { background: var(--green-light); border-right: 1.5px solid var(--green-bright); }
     .tl-reserved { background: var(--red-light);   border-left: 1.5px solid var(--red-mid); }
+    @keyframes needle-pulse {
+      0%, 100% { box-shadow: 0 0 5px rgba(249,168,37,0.6); }
+      50%       { box-shadow: 0 0 14px rgba(249,168,37,1), 0 0 22px rgba(249,168,37,0.4); }
+    }
     .tl-now {
       position: absolute;
       top: -2px;
       bottom: -2px;
-      width: 2.5px;
+      width: 3px;
       background: var(--yellow);
       border-radius: 2px;
       z-index: 5;
-      box-shadow: 0 0 6px rgba(249,168,37,0.7);
+      animation: needle-pulse 2s ease-in-out infinite;
     }
     .tl-labels {
       display: flex;
@@ -409,19 +430,26 @@
       .parks-container, .best-bets { padding: 0 10px; }
       .park-header { padding: 10px 12px; }
       .court-row { padding: 10px 12px 9px; }
+      .court-row-free { padding-left: 9px; }
     }
   </style>
 </head>
 <body>
 
+<div class="sticky-top">
 <header>
   <div class="header-inner">
     <div class="header-left">
-      <h1><span class="icon">🎾</span> Seattle Tennis Courts</h1>
+      <h1><span class="icon">🎾</span> Court Rezzies</h1>
+      <div class="header-subtitle">Seattle Public Courts</div>
       <div class="date-line" id="hdr-date">Loading…</div>
       <div class="meta-line" id="hdr-meta"></div>
     </div>
     <div class="header-stats" id="hdr-stats" style="display:none">
+      <div class="hstat" id="hdr-now-stat" style="display:none">
+        <div class="hstat-num" style="color:var(--yellow)" id="stat-now">–</div>
+        <div class="hstat-label">Now Open</div>
+      </div>
       <div class="hstat">
         <div class="hstat-num red" id="stat-res">–</div>
         <div class="hstat-label">Reserved</div>
@@ -437,6 +465,7 @@
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="today" onclick="switchTab('today')">Today</button>
   <button class="tab-btn" data-tab="tomorrow" onclick="switchTab('tomorrow')">Tomorrow</button>
+</div>
 </div>
 
 <div class="legend-bar">
@@ -493,6 +522,21 @@ function nowMinutes() {
 function todayISO() {
   const n = new Date();
   return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}-${String(n.getDate()).padStart(2,"0")}`;
+}
+
+// ── Open-right-now count ───────────────────────────────────────────
+function countOpenNow(parks) {
+  const now = nowMinutes();
+  if (now < WIN_START || now > WIN_END) return null;
+  let count = 0;
+  for (const parkData of Object.values(parks)) {
+    for (const courtData of Object.values(parkData.courts)) {
+      if (courtData.status === 'error') continue;
+      const reserved = courtData.reserved_in_window || [];
+      if (!reserved.some(r => now >= r.start_min && now < r.end_min)) count++;
+    }
+  }
+  return count;
 }
 
 // ── Tab switching ──────────────────────────────────────────────────
@@ -556,10 +600,10 @@ function buildLabels() {
 // ── Court row ──────────────────────────────────────────────────────
 function buildCourtRow(name, data, isToday) {
   const row = document.createElement("div");
-  row.className = "court-row";
-
   const reserved = data.reserved_in_window || [];
-  const avail    = data.available_slots    || [];
+  row.className = "court-row" + (reserved.length === 0 && data.status !== 'error' ? " court-row-free" : "");
+
+  const avail = data.available_slots || [];
 
   const top = document.createElement("div");
   top.className = "court-top";
@@ -691,6 +735,7 @@ async function renderTab(tab) {
   loadMsg.textContent = 'Loading reservation data…';
   container.appendChild(loadMsg);
   document.getElementById('hdr-stats').style.display = 'none';
+  document.getElementById('hdr-now-stat').style.display = 'none';
   document.getElementById('best-bets-wrap').style.display = 'none';
   document.getElementById('best-bets-grid').innerHTML = '';
   document.getElementById('hdr-date').textContent = 'Loading…';
@@ -730,6 +775,16 @@ async function renderTab(tab) {
 
     const isToday = data.date === todayISO();
     buildBestBets(data.parks, tab);
+
+    // "Now open" stat — today tab only, within window hours
+    const nowOpen = (tab === 'today') ? countOpenNow(data.parks) : null;
+    const nowStatEl = document.getElementById('hdr-now-stat');
+    if (nowOpen !== null) {
+      document.getElementById('stat-now').textContent = nowOpen;
+      nowStatEl.style.display = 'flex';
+    } else {
+      nowStatEl.style.display = 'none';
+    }
 
     for (const [parkName, parkData] of Object.entries(data.parks)) {
       container.appendChild(buildParkCard(parkName, parkData, isToday));
