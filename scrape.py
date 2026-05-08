@@ -157,11 +157,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default="data/reservations.json",
                         help="Path to write JSON output")
+    parser.add_argument("--days-ahead", type=int, default=1,
+                        help="Days ahead to scrape: 0=today, 1=tomorrow, 2=day after tomorrow")
     args = parser.parse_args()
 
     pacific = ZoneInfo("America/Los_Angeles")
     now = datetime.now(pacific)
-    target_date = (now + timedelta(days=1)).date()
+    target_date = (now + timedelta(days=args.days_ahead)).date()
     date_str = target_date.isoformat()
 
     print(f"Fetching availability for {date_str} (captured at {now.strftime('%Y-%m-%d %I:%M %p %Z')})")

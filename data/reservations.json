@@ -1,7 +1,7 @@
 {
   "date": "2026-05-08",
-  "captured_at": "2026-05-07T06:34:28.431873-07:00",
-  "captured_at_display": "May 7, 2026 at 6:34 AM PDT",
+  "captured_at": "2026-05-07T23:01:56.242260-07:00",
+  "captured_at_display": "May 7, 2026 at 11:01 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -142,14 +142,8 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "09:00",
-              "start_min": 420,
-              "end_min": 540
-            },
-            {
-              "start": "10:15",
               "end": "16:00",
-              "start_min": 615,
+              "start_min": 420,
               "end_min": 960
             },
             {
@@ -159,14 +153,7 @@
               "end_min": 1260
             }
           ],
-          "reserved_in_window": [
-            {
-              "start": "9:00am",
-              "end": "10:15am",
-              "start_min": 540,
-              "end_min": 615
-            }
-          ]
+          "reserved_in_window": []
         },
         "Court 02": {
           "resource_id": 1354,
@@ -305,12 +292,31 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "16:00",
+              "end": "09:00",
               "start_min": 420,
-              "end_min": 960
+              "end_min": 540
+            },
+            {
+              "start": "10:15",
+              "end": "14:30",
+              "start_min": 615,
+              "end_min": 870
             }
           ],
-          "reserved_in_window": []
+          "reserved_in_window": [
+            {
+              "start": "9:00am",
+              "end": "10:15am",
+              "start_min": 540,
+              "end_min": 615
+            },
+            {
+              "start": "2:30pm",
+              "end": "4:00pm",
+              "start_min": 870,
+              "end_min": 960
+            }
+          ]
         },
         "Court 05": {
           "resource_id": 357,
@@ -374,14 +380,8 @@
             },
             {
               "start": "12:00",
-              "end": "13:30",
-              "start_min": 720,
-              "end_min": 810
-            },
-            {
-              "start": "14:30",
               "end": "16:00",
-              "start_min": 870,
+              "start_min": 720,
               "end_min": 960
             }
           ],
@@ -397,12 +397,6 @@
               "end": "12:00pm",
               "start_min": 570,
               "end_min": 720
-            },
-            {
-              "start": "1:30pm",
-              "end": "2:30pm",
-              "start_min": 810,
-              "end_min": 870
             }
           ]
         },
@@ -461,16 +455,10 @@
               "end_min": 630
             },
             {
-              "start": "12:00",
+              "start": "13:00",
               "end": "14:00",
-              "start_min": 720,
+              "start_min": 780,
               "end_min": 840
-            },
-            {
-              "start": "15:30",
-              "end": "16:30",
-              "start_min": 930,
-              "end_min": 990
             },
             {
               "start": "20:00",
@@ -488,15 +476,15 @@
             },
             {
               "start": "10:30am",
-              "end": "12:00pm",
+              "end": "1:00pm",
               "start_min": 630,
-              "end_min": 720
+              "end_min": 780
             },
             {
               "start": "2:00pm",
-              "end": "3:30pm",
+              "end": "4:00pm",
               "start_min": 840,
-              "end_min": 930
+              "end_min": 960
             }
           ]
         },
@@ -888,9 +876,9 @@
             },
             {
               "start": "11:00",
-              "end": "15:00",
+              "end": "14:00",
               "start_min": 660,
-              "end_min": 900
+              "end_min": 840
             },
             {
               "start": "16:00",
@@ -913,9 +901,9 @@
               "end_min": 660
             },
             {
-              "start": "3:00pm",
+              "start": "2:00pm",
               "end": "4:00pm",
-              "start_min": 900,
+              "start_min": 840,
               "end_min": 960
             }
           ]
@@ -944,9 +932,9 @@
               "end_min": 960
             },
             {
-              "start": "19:30",
+              "start": "20:30",
               "end": "22:00",
-              "start_min": 1170,
+              "start_min": 1230,
               "end_min": 1320
             }
           ],
@@ -964,20 +952,14 @@
             },
             {
               "start": "09:00",
-              "end": "16:00",
+              "end": "15:00",
               "start_min": 540,
-              "end_min": 960
+              "end_min": 900
             },
             {
-              "start": "17:00",
-              "end": "18:00",
-              "start_min": 1020,
-              "end_min": 1080
-            },
-            {
-              "start": "19:30",
+              "start": "21:00",
               "end": "22:00",
-              "start_min": 1170,
+              "start_min": 1260,
               "end_min": 1320
             }
           ],
@@ -987,6 +969,12 @@
               "end": "9:00am",
               "start_min": 480,
               "end_min": 540
+            },
+            {
+              "start": "3:00pm",
+              "end": "4:00pm",
+              "start_min": 900,
+              "end_min": 960
             }
           ]
         }

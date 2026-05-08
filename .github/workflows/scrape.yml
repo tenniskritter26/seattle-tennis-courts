@@ -33,12 +33,15 @@ jobs:
         run: |
           SCHED="${{ github.event.schedule }}"
           EVENT="${{ github.event_name }}"
-          if [[ "$SCHED" == "49 6 * * *" || "$SCHED" == "49 7 * * *" || "$EVENT" == "workflow_dispatch" ]]; then
-            echo "Nightly run → data/reservations.json"
-            python scrape.py --output data/reservations.json
+          if [[ "$SCHED" == "49 6 * * *" || "$SCHED" == "49 7 * * *" ]]; then
+            # Nightly: pre-populate today (after midnight) and tomorrow
+            echo "Nightly run → reservations.json (days-ahead=1) + tomorrow.json (days-ahead=2)"
+            python scrape.py --output data/reservations.json --days-ahead 1
+            python scrape.py --output data/tomorrow.json --days-ahead 2
           else
-            echo "Daytime run → data/tomorrow.json"
-            python scrape.py --output data/tomorrow.json
+            # Daytime or manual: refresh tomorrow preview only (today is locked — no same-day reservations)
+            echo "Daytime/manual run → tomorrow.json (days-ahead=1)"
+            python scrape.py --output data/tomorrow.json --days-ahead 1
           fi
         env:
           TZ: America/Los_Angeles
