@@ -1,7 +1,7 @@
 {
   "date": "2026-05-10",
-  "captured_at": "2026-05-09T15:52:54.859314-07:00",
-  "captured_at_display": "May 9, 2026 at 3:52 PM PDT",
+  "captured_at": "2026-05-09T20:48:09.996180-07:00",
+  "captured_at_display": "May 9, 2026 at 8:48 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -437,6 +437,12 @@
               "end_min": 570
             },
             {
+              "start": "11:00",
+              "end": "12:00",
+              "start_min": 660,
+              "end_min": 720
+            },
+            {
               "start": "14:30",
               "end": "15:00",
               "start_min": 870,
@@ -470,8 +476,14 @@
             },
             {
               "start": "9:30am",
-              "end": "2:30pm",
+              "end": "11:00am",
               "start_min": 570,
+              "end_min": 660
+            },
+            {
+              "start": "12:00pm",
+              "end": "2:30pm",
+              "start_min": 720,
               "end_min": 870
             },
             {
@@ -612,8 +624,14 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "13:00",
+              "end": "10:00",
               "start_min": 420,
+              "end_min": 600
+            },
+            {
+              "start": "11:30",
+              "end": "13:00",
+              "start_min": 690,
               "end_min": 780
             },
             {
@@ -630,6 +648,12 @@
             }
           ],
           "reserved_in_window": [
+            {
+              "start": "10:00am",
+              "end": "11:30am",
+              "start_min": 600,
+              "end_min": 690
+            },
             {
               "start": "1:00pm",
               "end": "2:00pm",
@@ -725,8 +749,14 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "22:00",
+              "end": "18:15",
               "start_min": 420,
+              "end_min": 1095
+            },
+            {
+              "start": "19:15",
+              "end": "22:00",
+              "start_min": 1155,
               "end_min": 1320
             }
           ],
