@@ -1,7 +1,7 @@
 {
   "date": "2026-05-17",
-  "captured_at": "2026-05-16T12:12:55.659357-07:00",
-  "captured_at_display": "May 16, 2026 at 12:12 PM PDT",
+  "captured_at": "2026-05-16T13:55:44.756912-07:00",
+  "captured_at_display": "May 16, 2026 at 1:55 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -18,14 +18,8 @@
             },
             {
               "start": "11:00",
-              "end": "16:00",
-              "start_min": 660,
-              "end_min": 960
-            },
-            {
-              "start": "18:00",
               "end": "21:00",
-              "start_min": 1080,
+              "start_min": 660,
               "end_min": 1260
             }
           ],
@@ -361,9 +355,9 @@
               "end_min": 780
             },
             {
-              "start": "18:30",
+              "start": "20:00",
               "end": "22:00",
-              "start_min": 1110,
+              "start_min": 1200,
               "end_min": 1320
             }
           ],
@@ -426,14 +420,8 @@
             },
             {
               "start": "11:00",
-              "end": "11:30",
-              "start_min": 660,
-              "end_min": 690
-            },
-            {
-              "start": "12:30",
               "end": "13:00",
-              "start_min": 750,
+              "start_min": 660,
               "end_min": 780
             },
             {
@@ -449,12 +437,6 @@
               "end": "11:00am",
               "start_min": 570,
               "end_min": 660
-            },
-            {
-              "start": "11:30am",
-              "end": "12:30pm",
-              "start_min": 690,
-              "end_min": 750
             },
             {
               "start": "1:00pm",
@@ -550,8 +532,14 @@
             },
             {
               "start": "10:00",
-              "end": "14:00",
+              "end": "10:30",
               "start_min": 600,
+              "end_min": 630
+            },
+            {
+              "start": "12:00",
+              "end": "14:00",
+              "start_min": 720,
               "end_min": 840
             },
             {
@@ -575,6 +563,12 @@
               "end_min": 600
             },
             {
+              "start": "10:30am",
+              "end": "12:00pm",
+              "start_min": 630,
+              "end_min": 720
+            },
+            {
               "start": "2:00pm",
               "end": "3:30pm",
               "start_min": 840,
@@ -594,8 +588,14 @@
             },
             {
               "start": "12:00",
-              "end": "21:00",
+              "end": "14:00",
               "start_min": 720,
+              "end_min": 840
+            },
+            {
+              "start": "15:30",
+              "end": "21:00",
+              "start_min": 930,
               "end_min": 1260
             }
           ],
@@ -605,6 +605,12 @@
               "end": "12:00pm",
               "start_min": 540,
               "end_min": 720
+            },
+            {
+              "start": "2:00pm",
+              "end": "3:30pm",
+              "start_min": 840,
+              "end_min": 930
             }
           ]
         },
