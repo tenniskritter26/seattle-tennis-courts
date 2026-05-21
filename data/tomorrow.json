@@ -1,7 +1,7 @@
 {
   "date": "2026-05-22",
-  "captured_at": "2026-05-21T05:51:23.167569-07:00",
-  "captured_at_display": "May 21, 2026 at 5:51 AM PDT",
+  "captured_at": "2026-05-21T09:41:04.313074-07:00",
+  "captured_at_display": "May 21, 2026 at 9:41 AM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -937,12 +937,25 @@
           "available_slots": [
             {
               "start": "06:00",
-              "end": "22:00",
+              "end": "14:30",
               "start_min": 360,
+              "end_min": 870
+            },
+            {
+              "start": "15:30",
+              "end": "22:00",
+              "start_min": 930,
               "end_min": 1320
             }
           ],
-          "reserved_in_window": []
+          "reserved_in_window": [
+            {
+              "start": "2:30pm",
+              "end": "3:30pm",
+              "start_min": 870,
+              "end_min": 930
+            }
+          ]
         },
         "Court 04 \u2014 Lower": {
           "resource_id": 364,
@@ -950,8 +963,14 @@
           "available_slots": [
             {
               "start": "06:00",
-              "end": "15:00",
+              "end": "09:00",
               "start_min": 360,
+              "end_min": 540
+            },
+            {
+              "start": "10:00",
+              "end": "15:00",
+              "start_min": 600,
               "end_min": 900
             },
             {
@@ -968,6 +987,12 @@
             }
           ],
           "reserved_in_window": [
+            {
+              "start": "9:00am",
+              "end": "10:00am",
+              "start_min": 540,
+              "end_min": 600
+            },
             {
               "start": "3:00pm",
               "end": "4:00pm",
@@ -1073,7 +1098,7 @@
   },
   "summary": {
     "total_courts": 35,
-    "courts_with_reservations": 23,
-    "courts_fully_free": 12
+    "courts_with_reservations": 24,
+    "courts_fully_free": 11
   }
 }
