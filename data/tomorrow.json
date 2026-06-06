@@ -1,7 +1,7 @@
 {
   "date": "2026-06-07",
-  "captured_at": "2026-06-06T14:09:24.493021-07:00",
-  "captured_at_display": "June 6, 2026 at 2:09 PM PDT",
+  "captured_at": "2026-06-06T16:08:03.465797-07:00",
+  "captured_at_display": "June 6, 2026 at 4:08 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -110,8 +110,14 @@
           "available_slots": [
             {
               "start": "09:00",
-              "end": "22:00",
+              "end": "10:30",
               "start_min": 540,
+              "end_min": 630
+            },
+            {
+              "start": "12:00",
+              "end": "22:00",
+              "start_min": 720,
               "end_min": 1320
             }
           ],
@@ -121,6 +127,12 @@
               "end": "9:00am",
               "start_min": 480,
               "end_min": 540
+            },
+            {
+              "start": "10:30am",
+              "end": "12:00pm",
+              "start_min": 630,
+              "end_min": 720
             }
           ]
         },
@@ -307,12 +319,6 @@
           "status": 0,
           "available_slots": [
             {
-              "start": "07:00",
-              "end": "09:00",
-              "start_min": 420,
-              "end_min": 540
-            },
-            {
               "start": "14:30",
               "end": "18:00",
               "start_min": 870,
@@ -327,9 +333,9 @@
           ],
           "reserved_in_window": [
             {
-              "start": "9:00am",
+              "start": "8:00am",
               "end": "2:30pm",
-              "start_min": 540,
+              "start_min": 480,
               "end_min": 870
             }
           ]
@@ -700,12 +706,6 @@
               "end_min": 570
             },
             {
-              "start": "12:30",
-              "end": "13:30",
-              "start_min": 750,
-              "end_min": 810
-            },
-            {
               "start": "16:00",
               "end": "17:00",
               "start_min": 960,
@@ -721,14 +721,8 @@
           "reserved_in_window": [
             {
               "start": "9:30am",
-              "end": "12:30pm",
-              "start_min": 570,
-              "end_min": 750
-            },
-            {
-              "start": "1:30pm",
               "end": "4:00pm",
-              "start_min": 810,
+              "start_min": 570,
               "end_min": 960
             }
           ]
@@ -831,12 +825,6 @@
           "status": 0,
           "available_slots": [
             {
-              "start": "11:00",
-              "end": "12:00",
-              "start_min": 660,
-              "end_min": 720
-            },
-            {
               "start": "14:00",
               "end": "17:00",
               "start_min": 840,
@@ -852,14 +840,8 @@
           "reserved_in_window": [
             {
               "start": "8:00am",
-              "end": "11:00am",
-              "start_min": 480,
-              "end_min": 660
-            },
-            {
-              "start": "12:00pm",
               "end": "2:00pm",
-              "start_min": 720,
+              "start_min": 480,
               "end_min": 840
             }
           ]
