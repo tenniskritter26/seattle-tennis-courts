@@ -1,7 +1,7 @@
 {
   "date": "2026-06-18",
-  "captured_at": "2026-06-16T23:53:43.415600-07:00",
-  "captured_at_display": "June 16, 2026 at 11:53 PM PDT",
+  "captured_at": "2026-06-17T04:06:16.703743-07:00",
+  "captured_at_display": "June 17, 2026 at 4:06 AM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -93,9 +93,15 @@
       "courts": {
         "Court 01": {
           "resource_id": 1353,
-          "status": "error",
-          "error": "('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
-          "available_slots": [],
+          "status": 0,
+          "available_slots": [
+            {
+              "start": "07:00",
+              "end": "22:00",
+              "start_min": 420,
+              "end_min": 1320
+            }
+          ],
           "reserved_in_window": []
         },
         "Court 02": {
@@ -699,8 +705,14 @@
             },
             {
               "start": "12:30",
-              "end": "17:00",
+              "end": "14:00",
               "start_min": 750,
+              "end_min": 840
+            },
+            {
+              "start": "16:00",
+              "end": "17:00",
+              "start_min": 960,
               "end_min": 1020
             },
             {
@@ -722,6 +734,12 @@
               "end": "12:30pm",
               "start_min": 660,
               "end_min": 750
+            },
+            {
+              "start": "2:00pm",
+              "end": "4:00pm",
+              "start_min": 840,
+              "end_min": 960
             }
           ]
         },
