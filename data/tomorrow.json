@@ -1,7 +1,7 @@
 {
   "date": "2026-06-19",
-  "captured_at": "2026-06-18T15:17:42.192279-07:00",
-  "captured_at_display": "June 18, 2026 at 3:17 PM PDT",
+  "captured_at": "2026-06-18T21:54:27.910210-07:00",
+  "captured_at_display": "June 18, 2026 at 9:54 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -335,10 +335,65 @@
         },
         "Court 07": {
           "resource_id": 359,
-          "status": "error",
-          "error": "HTTPSConnectionPool(host='anc.apm.activecommunities.com', port=443): Read timed out. (read timeout=15)",
-          "available_slots": [],
-          "reserved_in_window": []
+          "status": 0,
+          "available_slots": [
+            {
+              "start": "07:00",
+              "end": "09:00",
+              "start_min": 420,
+              "end_min": 540
+            },
+            {
+              "start": "10:15",
+              "end": "11:00",
+              "start_min": 615,
+              "end_min": 660
+            },
+            {
+              "start": "12:30",
+              "end": "13:00",
+              "start_min": 750,
+              "end_min": 780
+            },
+            {
+              "start": "15:00",
+              "end": "16:05",
+              "start_min": 900,
+              "end_min": 965
+            },
+            {
+              "start": "19:30",
+              "end": "20:30",
+              "start_min": 1170,
+              "end_min": 1230
+            },
+            {
+              "start": "21:30",
+              "end": "22:00",
+              "start_min": 1290,
+              "end_min": 1320
+            }
+          ],
+          "reserved_in_window": [
+            {
+              "start": "9:00am",
+              "end": "10:15am",
+              "start_min": 540,
+              "end_min": 615
+            },
+            {
+              "start": "11:00am",
+              "end": "12:30pm",
+              "start_min": 660,
+              "end_min": 750
+            },
+            {
+              "start": "1:00pm",
+              "end": "3:00pm",
+              "start_min": 780,
+              "end_min": 900
+            }
+          ]
         },
         "Court 08": {
           "resource_id": 360,
@@ -448,10 +503,35 @@
         },
         "Upper Court 02": {
           "resource_id": 370,
-          "status": "error",
-          "error": "HTTPSConnectionPool(host='anc.apm.activecommunities.com', port=443): Read timed out. (read timeout=15)",
-          "available_slots": [],
-          "reserved_in_window": []
+          "status": 0,
+          "available_slots": [
+            {
+              "start": "07:00",
+              "end": "09:30",
+              "start_min": 420,
+              "end_min": 570
+            },
+            {
+              "start": "11:00",
+              "end": "18:30",
+              "start_min": 660,
+              "end_min": 1110
+            },
+            {
+              "start": "20:00",
+              "end": "21:00",
+              "start_min": 1200,
+              "end_min": 1260
+            }
+          ],
+          "reserved_in_window": [
+            {
+              "start": "9:30am",
+              "end": "11:00am",
+              "start_min": 570,
+              "end_min": 660
+            }
+          ]
         },
         "Upper Court 03": {
           "resource_id": 371,
@@ -470,9 +550,9 @@
               "end_min": 720
             },
             {
-              "start": "15:00",
+              "start": "16:00",
               "end": "21:00",
-              "start_min": 900,
+              "start_min": 960,
               "end_min": 1260
             }
           ],
@@ -485,9 +565,9 @@
             },
             {
               "start": "12:00pm",
-              "end": "3:00pm",
+              "end": "4:00pm",
               "start_min": 720,
-              "end_min": 900
+              "end_min": 960
             }
           ]
         }
@@ -516,16 +596,28 @@
         },
         "Court 02": {
           "resource_id": 1368,
-          "status": "error",
-          "error": "HTTPSConnectionPool(host='anc.apm.activecommunities.com', port=443): Max retries exceeded with url: /seattle/rest/reservation/resource/availability/daily/1368?start_date=2026-06-19&end_date=2026-06-19&customer_id=0&company_id=0&event_type_id=-1&attendee=1&no_cache=true&locale=en-US (Caused by ConnectTimeoutError(<HTTPSConnection(host='anc.apm.activecommunities.com', port=443) at 0x7f6373c1f150>, 'Connection to anc.apm.activecommunities.com timed out. (connect timeout=15)'))",
-          "available_slots": [],
+          "status": 0,
+          "available_slots": [
+            {
+              "start": "07:00",
+              "end": "22:00",
+              "start_min": 420,
+              "end_min": 1320
+            }
+          ],
           "reserved_in_window": []
         },
         "Court 03": {
           "resource_id": 1369,
-          "status": "error",
-          "error": "HTTPSConnectionPool(host='anc.apm.activecommunities.com', port=443): Max retries exceeded with url: /seattle/rest/reservation/resource/availability/daily/1369?start_date=2026-06-19&end_date=2026-06-19&customer_id=0&company_id=0&event_type_id=-1&attendee=1&no_cache=true&locale=en-US (Caused by ConnectTimeoutError(<HTTPSConnection(host='anc.apm.activecommunities.com', port=443) at 0x7f6373c2cd10>, 'Connection to anc.apm.activecommunities.com timed out. (connect timeout=15)'))",
-          "available_slots": [],
+          "status": 0,
+          "available_slots": [
+            {
+              "start": "07:00",
+              "end": "22:00",
+              "start_min": 420,
+              "end_min": 1320
+            }
+          ],
           "reserved_in_window": []
         },
         "Court 04": {
@@ -543,16 +635,28 @@
         },
         "Court 05": {
           "resource_id": 1371,
-          "status": "error",
-          "error": "HTTPSConnectionPool(host='anc.apm.activecommunities.com', port=443): Max retries exceeded with url: /seattle/rest/reservation/resource/availability/daily/1371?start_date=2026-06-19&end_date=2026-06-19&customer_id=0&company_id=0&event_type_id=-1&attendee=1&no_cache=true&locale=en-US (Caused by ConnectTimeoutError(<HTTPSConnection(host='anc.apm.activecommunities.com', port=443) at 0x7f6373c1d310>, 'Connection to anc.apm.activecommunities.com timed out. (connect timeout=15)'))",
-          "available_slots": [],
+          "status": 0,
+          "available_slots": [
+            {
+              "start": "07:00",
+              "end": "22:00",
+              "start_min": 420,
+              "end_min": 1320
+            }
+          ],
           "reserved_in_window": []
         },
         "Court 06": {
           "resource_id": 1372,
-          "status": "error",
-          "error": "HTTPSConnectionPool(host='anc.apm.activecommunities.com', port=443): Read timed out. (read timeout=15)",
-          "available_slots": [],
+          "status": 0,
+          "available_slots": [
+            {
+              "start": "07:00",
+              "end": "22:00",
+              "start_min": 420,
+              "end_min": 1320
+            }
+          ],
           "reserved_in_window": []
         }
       }
@@ -591,10 +695,47 @@
       "courts": {
         "Court 01 \u2014 Upper": {
           "resource_id": 365,
-          "status": "error",
-          "error": "HTTPSConnectionPool(host='anc.apm.activecommunities.com', port=443): Max retries exceeded with url: /seattle/rest/reservation/resource/availability/daily/365?start_date=2026-06-19&end_date=2026-06-19&customer_id=0&company_id=0&event_type_id=-1&attendee=1&no_cache=true&locale=en-US (Caused by ConnectTimeoutError(<HTTPSConnection(host='anc.apm.activecommunities.com', port=443) at 0x7f6373c2fa90>, 'Connection to anc.apm.activecommunities.com timed out. (connect timeout=15)'))",
-          "available_slots": [],
-          "reserved_in_window": []
+          "status": 0,
+          "available_slots": [
+            {
+              "start": "06:00",
+              "end": "07:00",
+              "start_min": 360,
+              "end_min": 420
+            },
+            {
+              "start": "10:00",
+              "end": "14:30",
+              "start_min": 600,
+              "end_min": 870
+            },
+            {
+              "start": "15:30",
+              "end": "16:00",
+              "start_min": 930,
+              "end_min": 960
+            },
+            {
+              "start": "19:30",
+              "end": "22:00",
+              "start_min": 1170,
+              "end_min": 1320
+            }
+          ],
+          "reserved_in_window": [
+            {
+              "start": "8:00am",
+              "end": "10:00am",
+              "start_min": 480,
+              "end_min": 600
+            },
+            {
+              "start": "2:30pm",
+              "end": "3:30pm",
+              "start_min": 870,
+              "end_min": 930
+            }
+          ]
         },
         "Court 02 \u2014 Upper": {
           "resource_id": 366,
@@ -707,14 +848,8 @@
             },
             {
               "start": "11:30",
-              "end": "15:00",
-              "start_min": 690,
-              "end_min": 900
-            },
-            {
-              "start": "16:00",
               "end": "19:00",
-              "start_min": 960,
+              "start_min": 690,
               "end_min": 1140
             },
             {
@@ -736,12 +871,6 @@
               "end": "11:30am",
               "start_min": 600,
               "end_min": 690
-            },
-            {
-              "start": "3:00pm",
-              "end": "4:00pm",
-              "start_min": 900,
-              "end_min": 960
             }
           ]
         },
@@ -770,7 +899,7 @@
   },
   "summary": {
     "total_courts": 35,
-    "courts_with_reservations": 14,
-    "courts_fully_free": 21
+    "courts_with_reservations": 17,
+    "courts_fully_free": 18
   }
 }
