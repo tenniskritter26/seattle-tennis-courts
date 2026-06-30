@@ -1,7 +1,7 @@
 {
   "date": "2026-07-01",
-  "captured_at": "2026-06-30T09:24:08.221168-07:00",
-  "captured_at_display": "June 30, 2026 at 9:24 AM PDT",
+  "captured_at": "2026-06-30T13:04:39.786174-07:00",
+  "captured_at_display": "June 30, 2026 at 1:04 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -518,14 +518,8 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "08:00",
-              "start_min": 420,
-              "end_min": 480
-            },
-            {
-              "start": "09:30",
               "end": "18:00",
-              "start_min": 570,
+              "start_min": 420,
               "end_min": 1080
             },
             {
@@ -535,14 +529,7 @@
               "end_min": 1260
             }
           ],
-          "reserved_in_window": [
-            {
-              "start": "8:00am",
-              "end": "9:30am",
-              "start_min": 480,
-              "end_min": 570
-            }
-          ]
+          "reserved_in_window": []
         },
         "Upper Court 03": {
           "resource_id": 371,
@@ -799,9 +786,9 @@
             },
             {
               "start": "09:00",
-              "end": "17:30",
+              "end": "16:30",
               "start_min": 540,
-              "end_min": 1050
+              "end_min": 990
             },
             {
               "start": "20:00",
@@ -857,8 +844,14 @@
           "available_slots": [
             {
               "start": "06:00",
-              "end": "18:00",
+              "end": "10:30",
               "start_min": 360,
+              "end_min": 630
+            },
+            {
+              "start": "11:30",
+              "end": "18:00",
+              "start_min": 690,
               "end_min": 1080
             },
             {
@@ -868,7 +861,14 @@
               "end_min": 1320
             }
           ],
-          "reserved_in_window": []
+          "reserved_in_window": [
+            {
+              "start": "10:30am",
+              "end": "11:30am",
+              "start_min": 630,
+              "end_min": 690
+            }
+          ]
         }
       }
     },
