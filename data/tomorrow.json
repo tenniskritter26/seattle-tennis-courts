@@ -1,7 +1,7 @@
 {
-  "date": "2026-07-01",
-  "captured_at": "2026-06-30T21:19:46.997083-07:00",
-  "captured_at_display": "June 30, 2026 at 9:19 PM PDT",
+  "date": "2026-07-02",
+  "captured_at": "2026-06-30T23:51:56.976390-07:00",
+  "captured_at_display": "June 30, 2026 at 11:51 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -12,47 +12,29 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "08:00",
+              "end": "10:00",
               "start_min": 420,
-              "end_min": 480
+              "end_min": 600
             },
             {
-              "start": "11:00",
-              "end": "13:00",
-              "start_min": 660,
-              "end_min": 780
-            },
-            {
-              "start": "14:30",
+              "start": "11:45",
               "end": "17:00",
-              "start_min": 870,
+              "start_min": 705,
               "end_min": 1020
             },
             {
-              "start": "18:00",
-              "end": "18:30",
-              "start_min": 1080,
-              "end_min": 1110
-            },
-            {
-              "start": "20:00",
+              "start": "19:00",
               "end": "21:00",
-              "start_min": 1200,
+              "start_min": 1140,
               "end_min": 1260
             }
           ],
           "reserved_in_window": [
             {
-              "start": "8:00am",
-              "end": "11:00am",
-              "start_min": 480,
-              "end_min": 660
-            },
-            {
-              "start": "1:00pm",
-              "end": "2:30pm",
-              "start_min": 780,
-              "end_min": 870
+              "start": "10:00am",
+              "end": "11:45am",
+              "start_min": 600,
+              "end_min": 705
             }
           ]
         },
@@ -79,21 +61,15 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "09:00",
+              "end": "08:30",
               "start_min": 420,
-              "end_min": 540
+              "end_min": 510
             },
             {
-              "start": "12:00",
-              "end": "16:00",
-              "start_min": 720,
-              "end_min": 960
-            },
-            {
-              "start": "17:00",
-              "end": "18:30",
-              "start_min": 1020,
-              "end_min": 1110
+              "start": "11:00",
+              "end": "18:00",
+              "start_min": 660,
+              "end_min": 1080
             },
             {
               "start": "20:00",
@@ -104,10 +80,10 @@
           ],
           "reserved_in_window": [
             {
-              "start": "9:00am",
-              "end": "12:00pm",
-              "start_min": 540,
-              "end_min": 720
+              "start": "8:30am",
+              "end": "11:00am",
+              "start_min": 510,
+              "end_min": 660
             }
           ]
         },
@@ -134,20 +110,14 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "16:30",
+              "end": "17:00",
               "start_min": 420,
-              "end_min": 990
+              "end_min": 1020
             },
             {
-              "start": "17:30",
-              "end": "18:00",
-              "start_min": 1050,
-              "end_min": 1080
-            },
-            {
-              "start": "20:00",
+              "start": "18:00",
               "end": "22:00",
-              "start_min": 1200,
+              "start_min": 1080,
               "end_min": 1320
             }
           ],
@@ -159,14 +129,8 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "18:00",
-              "start_min": 420,
-              "end_min": 1080
-            },
-            {
-              "start": "20:00",
               "end": "22:00",
-              "start_min": 1200,
+              "start_min": 420,
               "end_min": 1320
             }
           ],
@@ -178,14 +142,8 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "18:30",
-              "start_min": 420,
-              "end_min": 1110
-            },
-            {
-              "start": "20:00",
               "end": "22:00",
-              "start_min": 1200,
+              "start_min": 420,
               "end_min": 1320
             }
           ],
@@ -240,15 +198,53 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "08:00",
+              "end": "09:30",
               "start_min": 420,
-              "end_min": 480
+              "end_min": 570
             },
             {
-              "start": "13:15",
-              "end": "16:30",
-              "start_min": 795,
-              "end_min": 990
+              "start": "13:30",
+              "end": "18:00",
+              "start_min": 810,
+              "end_min": 1080
+            },
+            {
+              "start": "20:30",
+              "end": "22:00",
+              "start_min": 1230,
+              "end_min": 1320
+            }
+          ],
+          "reserved_in_window": [
+            {
+              "start": "9:30am",
+              "end": "1:30pm",
+              "start_min": 570,
+              "end_min": 810
+            }
+          ]
+        },
+        "Court 04": {
+          "resource_id": 356,
+          "status": 0,
+          "available_slots": [
+            {
+              "start": "07:00",
+              "end": "10:00",
+              "start_min": 420,
+              "end_min": 600
+            },
+            {
+              "start": "11:30",
+              "end": "12:00",
+              "start_min": 690,
+              "end_min": 720
+            },
+            {
+              "start": "13:00",
+              "end": "17:30",
+              "start_min": 780,
+              "end_min": 1050
             },
             {
               "start": "21:00",
@@ -259,54 +255,16 @@
           ],
           "reserved_in_window": [
             {
-              "start": "8:00am",
-              "end": "1:15pm",
-              "start_min": 480,
-              "end_min": 795
-            }
-          ]
-        },
-        "Court 04": {
-          "resource_id": 356,
-          "status": 0,
-          "available_slots": [
-            {
-              "start": "07:00",
-              "end": "08:00",
-              "start_min": 420,
-              "end_min": 480
+              "start": "10:00am",
+              "end": "11:30am",
+              "start_min": 600,
+              "end_min": 690
             },
             {
-              "start": "10:45",
-              "end": "16:00",
-              "start_min": 645,
-              "end_min": 960
-            },
-            {
-              "start": "17:30",
-              "end": "18:00",
-              "start_min": 1050,
-              "end_min": 1080
-            },
-            {
-              "start": "19:44",
-              "end": "19:45",
-              "start_min": 1184,
-              "end_min": 1185
-            },
-            {
-              "start": "21:15",
-              "end": "22:00",
-              "start_min": 1275,
-              "end_min": 1320
-            }
-          ],
-          "reserved_in_window": [
-            {
-              "start": "8:00am",
-              "end": "10:45am",
-              "start_min": 480,
-              "end_min": 645
+              "start": "12:00pm",
+              "end": "1:00pm",
+              "start_min": 720,
+              "end_min": 780
             }
           ]
         },
@@ -322,20 +280,14 @@
             },
             {
               "start": "12:00",
-              "end": "13:00",
-              "start_min": 720,
-              "end_min": 780
-            },
-            {
-              "start": "14:30",
               "end": "17:00",
-              "start_min": 870,
+              "start_min": 720,
               "end_min": 1020
             },
             {
-              "start": "21:00",
+              "start": "20:30",
               "end": "22:00",
-              "start_min": 1260,
+              "start_min": 1230,
               "end_min": 1320
             }
           ],
@@ -345,12 +297,6 @@
               "end": "12:00pm",
               "start_min": 540,
               "end_min": 720
-            },
-            {
-              "start": "1:00pm",
-              "end": "2:30pm",
-              "start_min": 780,
-              "end_min": 870
             }
           ]
         },
@@ -366,47 +312,15 @@
             },
             {
               "start": "12:00",
-              "end": "17:00",
-              "start_min": 720,
-              "end_min": 1020
-            },
-            {
-              "start": "19:00",
-              "end": "22:00",
-              "start_min": 1140,
-              "end_min": 1320
-            }
-          ],
-          "reserved_in_window": [
-            {
-              "start": "9:00am",
-              "end": "12:00pm",
-              "start_min": 540,
-              "end_min": 720
-            }
-          ]
-        },
-        "Court 07": {
-          "resource_id": 359,
-          "status": 0,
-          "available_slots": [
-            {
-              "start": "07:00",
-              "end": "08:30",
-              "start_min": 420,
-              "end_min": 510
-            },
-            {
-              "start": "10:00",
               "end": "13:00",
-              "start_min": 600,
+              "start_min": 720,
               "end_min": 780
             },
             {
-              "start": "16:00",
-              "end": "18:00",
-              "start_min": 960,
-              "end_min": 1080
+              "start": "15:15",
+              "end": "17:30",
+              "start_min": 915,
+              "end_min": 1050
             },
             {
               "start": "21:00",
@@ -417,10 +331,66 @@
           ],
           "reserved_in_window": [
             {
-              "start": "8:30am",
+              "start": "9:00am",
+              "end": "12:00pm",
+              "start_min": 540,
+              "end_min": 720
+            },
+            {
+              "start": "1:00pm",
+              "end": "3:15pm",
+              "start_min": 780,
+              "end_min": 915
+            }
+          ]
+        },
+        "Court 07": {
+          "resource_id": 359,
+          "status": 0,
+          "available_slots": [
+            {
+              "start": "07:00",
+              "end": "09:00",
+              "start_min": 420,
+              "end_min": 540
+            },
+            {
+              "start": "10:00",
+              "end": "10:30",
+              "start_min": 600,
+              "end_min": 630
+            },
+            {
+              "start": "12:00",
+              "end": "13:00",
+              "start_min": 720,
+              "end_min": 780
+            },
+            {
+              "start": "16:00",
+              "end": "17:00",
+              "start_min": 960,
+              "end_min": 1020
+            },
+            {
+              "start": "19:00",
+              "end": "21:00",
+              "start_min": 1140,
+              "end_min": 1260
+            }
+          ],
+          "reserved_in_window": [
+            {
+              "start": "9:00am",
               "end": "10:00am",
-              "start_min": 510,
+              "start_min": 540,
               "end_min": 600
+            },
+            {
+              "start": "10:30am",
+              "end": "12:00pm",
+              "start_min": 630,
+              "end_min": 720
             },
             {
               "start": "1:00pm",
@@ -435,36 +405,36 @@
           "status": 0,
           "available_slots": [
             {
-              "start": "08:00",
-              "end": "08:30",
-              "start_min": 480,
-              "end_min": 510
+              "start": "07:00",
+              "end": "09:00",
+              "start_min": 420,
+              "end_min": 540
             },
             {
-              "start": "10:00",
+              "start": "12:00",
               "end": "13:00",
-              "start_min": 600,
+              "start_min": 720,
               "end_min": 780
             },
             {
-              "start": "17:00",
-              "end": "19:30",
-              "start_min": 1020,
-              "end_min": 1170
+              "start": "16:00",
+              "end": "17:00",
+              "start_min": 960,
+              "end_min": 1020
             },
             {
-              "start": "21:00",
+              "start": "21:15",
               "end": "22:00",
-              "start_min": 1260,
+              "start_min": 1275,
               "end_min": 1320
             }
           ],
           "reserved_in_window": [
             {
-              "start": "8:30am",
-              "end": "10:00am",
-              "start_min": 510,
-              "end_min": 600
+              "start": "9:00am",
+              "end": "12:00pm",
+              "start_min": 540,
+              "end_min": 720
             },
             {
               "start": "1:00pm",
@@ -510,29 +480,23 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "08:00",
+              "end": "09:30",
               "start_min": 420,
-              "end_min": 480
+              "end_min": 570
             },
             {
-              "start": "09:30",
-              "end": "18:00",
-              "start_min": 570,
-              "end_min": 1080
-            },
-            {
-              "start": "20:00",
-              "end": "21:00",
-              "start_min": 1200,
-              "end_min": 1260
+              "start": "12:30",
+              "end": "19:00",
+              "start_min": 750,
+              "end_min": 1140
             }
           ],
           "reserved_in_window": [
             {
-              "start": "8:00am",
-              "end": "9:30am",
-              "start_min": 480,
-              "end_min": 570
+              "start": "9:30am",
+              "end": "12:30pm",
+              "start_min": 570,
+              "end_min": 750
             }
           ]
         },
@@ -547,9 +511,9 @@
               "end_min": 1080
             },
             {
-              "start": "20:00",
+              "start": "20:30",
               "end": "21:00",
-              "start_min": 1200,
+              "start_min": 1230,
               "end_min": 1260
             }
           ],
@@ -561,31 +525,12 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "08:30",
-              "start_min": 420,
-              "end_min": 510
-            },
-            {
-              "start": "09:30",
-              "end": "18:00",
-              "start_min": 570,
-              "end_min": 1080
-            },
-            {
-              "start": "20:00",
               "end": "21:00",
-              "start_min": 1200,
+              "start_min": 420,
               "end_min": 1260
             }
           ],
-          "reserved_in_window": [
-            {
-              "start": "8:30am",
-              "end": "9:30am",
-              "start_min": 510,
-              "end_min": 570
-            }
-          ]
+          "reserved_in_window": []
         }
       }
     },
@@ -609,15 +554,9 @@
             },
             {
               "start": "14:30",
-              "end": "19:00",
+              "end": "21:00",
               "start_min": 870,
-              "end_min": 1140
-            },
-            {
-              "start": "20:30",
-              "end": "22:00",
-              "start_min": 1230,
-              "end_min": 1320
+              "end_min": 1260
             }
           ],
           "reserved_in_window": [
@@ -641,31 +580,12 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "12:00",
+              "end": "21:00",
               "start_min": 420,
-              "end_min": 720
-            },
-            {
-              "start": "14:30",
-              "end": "17:45",
-              "start_min": 870,
-              "end_min": 1065
-            },
-            {
-              "start": "20:15",
-              "end": "22:00",
-              "start_min": 1215,
-              "end_min": 1320
+              "end_min": 1260
             }
           ],
-          "reserved_in_window": [
-            {
-              "start": "12:00pm",
-              "end": "2:30pm",
-              "start_min": 720,
-              "end_min": 870
-            }
-          ]
+          "reserved_in_window": []
         },
         "Court 03": {
           "resource_id": 1369,
@@ -673,29 +593,29 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "09:00",
+              "end": "09:30",
               "start_min": 420,
-              "end_min": 540
+              "end_min": 570
             },
             {
-              "start": "10:00",
-              "end": "17:45",
-              "start_min": 600,
-              "end_min": 1065
+              "start": "11:00",
+              "end": "20:45",
+              "start_min": 660,
+              "end_min": 1245
             },
             {
-              "start": "20:15",
+              "start": "21:45",
               "end": "22:00",
-              "start_min": 1215,
+              "start_min": 1305,
               "end_min": 1320
             }
           ],
           "reserved_in_window": [
             {
-              "start": "9:00am",
-              "end": "10:00am",
-              "start_min": 540,
-              "end_min": 600
+              "start": "9:30am",
+              "end": "11:00am",
+              "start_min": 570,
+              "end_min": 660
             }
           ]
         },
@@ -780,14 +700,8 @@
             },
             {
               "start": "12:00",
-              "end": "18:30",
-              "start_min": 720,
-              "end_min": 1110
-            },
-            {
-              "start": "21:00",
               "end": "23:30",
-              "start_min": 1260,
+              "start_min": 720,
               "end_min": 1410
             }
           ],
@@ -806,47 +720,10 @@
       "courts": {
         "Court 01 \u2014 Upper": {
           "resource_id": 365,
-          "status": 0,
-          "available_slots": [
-            {
-              "start": "06:00",
-              "end": "07:00",
-              "start_min": 360,
-              "end_min": 420
-            },
-            {
-              "start": "09:00",
-              "end": "10:00",
-              "start_min": 540,
-              "end_min": 600
-            },
-            {
-              "start": "11:30",
-              "end": "17:30",
-              "start_min": 690,
-              "end_min": 1050
-            },
-            {
-              "start": "20:00",
-              "end": "22:00",
-              "start_min": 1200,
-              "end_min": 1320
-            }
-          ],
-          "reserved_in_window": [
-            {
-              "start": "8:00am",
-              "end": "9:00am",
-              "start_min": 480,
-              "end_min": 540
-            },
-            {
-              "start": "10:00am",
-              "end": "11:30am",
-              "start_min": 600,
-              "end_min": 690
-            }
-          ]
+          "status": "error",
+          "error": "HTTPSConnectionPool(host='anc.apm.activecommunities.com', port=443): Read timed out. (read timeout=15)",
+          "available_slots": [],
+          "reserved_in_window": []
         },
         "Court 02 \u2014 Upper": {
           "resource_id": 366,
@@ -867,18 +744,55 @@
           "available_slots": [
             {
               "start": "06:00",
-              "end": "18:00",
+              "end": "08:00",
               "start_min": 360,
-              "end_min": 1080
+              "end_min": 480
             },
             {
-              "start": "21:30",
+              "start": "09:30",
+              "end": "10:30",
+              "start_min": 570,
+              "end_min": 630
+            },
+            {
+              "start": "12:00",
+              "end": "15:00",
+              "start_min": 720,
+              "end_min": 900
+            },
+            {
+              "start": "19:00",
+              "end": "19:30",
+              "start_min": 1140,
+              "end_min": 1170
+            },
+            {
+              "start": "20:30",
               "end": "22:00",
-              "start_min": 1290,
+              "start_min": 1230,
               "end_min": 1320
             }
           ],
-          "reserved_in_window": []
+          "reserved_in_window": [
+            {
+              "start": "8:00am",
+              "end": "9:30am",
+              "start_min": 480,
+              "end_min": 570
+            },
+            {
+              "start": "10:30am",
+              "end": "12:00pm",
+              "start_min": 630,
+              "end_min": 720
+            },
+            {
+              "start": "3:00pm",
+              "end": "4:00pm",
+              "start_min": 900,
+              "end_min": 960
+            }
+          ]
         },
         "Court 04 \u2014 Lower": {
           "resource_id": 364,
@@ -886,14 +800,14 @@
           "available_slots": [
             {
               "start": "06:00",
-              "end": "10:30",
+              "end": "15:00",
               "start_min": 360,
-              "end_min": 630
+              "end_min": 900
             },
             {
-              "start": "11:30",
+              "start": "16:00",
               "end": "18:00",
-              "start_min": 690,
+              "start_min": 960,
               "end_min": 1080
             },
             {
@@ -905,10 +819,10 @@
           ],
           "reserved_in_window": [
             {
-              "start": "10:30am",
-              "end": "11:30am",
-              "start_min": 630,
-              "end_min": 690
+              "start": "3:00pm",
+              "end": "4:00pm",
+              "start_min": 900,
+              "end_min": 960
             }
           ]
         }
@@ -922,26 +836,20 @@
           "available_slots": [
             {
               "start": "08:30",
-              "end": "09:30",
+              "end": "10:00",
               "start_min": 510,
-              "end_min": 570
+              "end_min": 600
             },
             {
               "start": "11:00",
-              "end": "14:30",
+              "end": "18:00",
               "start_min": 660,
-              "end_min": 870
+              "end_min": 1080
             },
             {
-              "start": "15:30",
-              "end": "16:00",
-              "start_min": 930,
-              "end_min": 960
-            },
-            {
-              "start": "21:00",
+              "start": "20:00",
               "end": "23:00",
-              "start_min": 1260,
+              "start_min": 1200,
               "end_min": 1380
             }
           ],
@@ -953,16 +861,10 @@
               "end_min": 510
             },
             {
-              "start": "9:30am",
+              "start": "10:00am",
               "end": "11:00am",
-              "start_min": 570,
+              "start_min": 600,
               "end_min": 660
-            },
-            {
-              "start": "2:30pm",
-              "end": "3:30pm",
-              "start_min": 870,
-              "end_min": 930
             }
           ]
         },
@@ -991,7 +893,7 @@
   },
   "summary": {
     "total_courts": 35,
-    "courts_with_reservations": 19,
-    "courts_fully_free": 16
+    "courts_with_reservations": 17,
+    "courts_fully_free": 18
   }
 }
