@@ -1,7 +1,7 @@
 {
   "date": "2026-08-06",
-  "captured_at": "2026-08-05T16:04:22.002938-07:00",
-  "captured_at_display": "August 5, 2026 at 4:04 PM PDT",
+  "captured_at": "2026-08-05T19:55:02.930362-07:00",
+  "captured_at_display": "August 5, 2026 at 7:55 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -390,12 +390,6 @@
               "end": "17:00",
               "start_min": 960,
               "end_min": 1020
-            },
-            {
-              "start": "21:00",
-              "end": "22:00",
-              "start_min": 1260,
-              "end_min": 1320
             }
           ],
           "reserved_in_window": [
@@ -466,10 +460,10 @@
               "end_min": 1020
             },
             {
-              "start": "20:00",
-              "end": "21:00",
-              "start_min": 1200,
-              "end_min": 1260
+              "start": "18:00",
+              "end": "19:00",
+              "start_min": 1080,
+              "end_min": 1140
             }
           ],
           "reserved_in_window": [
