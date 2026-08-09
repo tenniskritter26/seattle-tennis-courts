@@ -1,7 +1,7 @@
 {
   "date": "2026-08-10",
-  "captured_at": "2026-08-09T13:37:28.806238-07:00",
-  "captured_at_display": "August 9, 2026 at 1:37 PM PDT",
+  "captured_at": "2026-08-09T15:35:24.777398-07:00",
+  "captured_at_display": "August 9, 2026 at 3:35 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -12,9 +12,9 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "09:15",
+              "end": "08:15",
               "start_min": 420,
-              "end_min": 555
+              "end_min": 495
             },
             {
               "start": "11:45",
@@ -31,9 +31,9 @@
           ],
           "reserved_in_window": [
             {
-              "start": "9:15am",
+              "start": "8:15am",
               "end": "11:45am",
-              "start_min": 555,
+              "start_min": 495,
               "end_min": 705
             }
           ]
@@ -603,9 +603,9 @@
             },
             {
               "start": "14:30",
-              "end": "19:00",
+              "end": "18:00",
               "start_min": 870,
-              "end_min": 1140
+              "end_min": 1080
             },
             {
               "start": "20:30",
@@ -910,9 +910,9 @@
             },
             {
               "start": "13:00",
-              "end": "18:00",
+              "end": "17:00",
               "start_min": 780,
-              "end_min": 1080
+              "end_min": 1020
             },
             {
               "start": "21:00",
