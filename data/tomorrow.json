@@ -1,7 +1,7 @@
 {
   "date": "2026-08-24",
-  "captured_at": "2026-08-22T23:54:38.761222-07:00",
-  "captured_at_display": "August 22, 2026 at 11:54 PM PDT",
+  "captured_at": "2026-08-23T01:35:05.484814-07:00",
+  "captured_at_display": "August 23, 2026 at 1:35 AM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -119,9 +119,21 @@
       "courts": {
         "Court 01": {
           "resource_id": 1353,
-          "status": "error",
-          "error": "('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
-          "available_slots": [],
+          "status": 0,
+          "available_slots": [
+            {
+              "start": "07:00",
+              "end": "18:30",
+              "start_min": 420,
+              "end_min": 1110
+            },
+            {
+              "start": "20:00",
+              "end": "22:00",
+              "start_min": 1200,
+              "end_min": 1320
+            }
+          ],
           "reserved_in_window": []
         },
         "Court 02": {
@@ -201,10 +213,53 @@
         },
         "Court 03": {
           "resource_id": 355,
-          "status": "error",
-          "error": "('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
-          "available_slots": [],
-          "reserved_in_window": []
+          "status": 0,
+          "available_slots": [
+            {
+              "start": "07:00",
+              "end": "09:00",
+              "start_min": 420,
+              "end_min": 540
+            },
+            {
+              "start": "11:30",
+              "end": "13:00",
+              "start_min": 690,
+              "end_min": 780
+            },
+            {
+              "start": "16:00",
+              "end": "18:00",
+              "start_min": 960,
+              "end_min": 1080
+            },
+            {
+              "start": "20:00",
+              "end": "20:01",
+              "start_min": 1200,
+              "end_min": 1201
+            },
+            {
+              "start": "21:01",
+              "end": "22:00",
+              "start_min": 1261,
+              "end_min": 1320
+            }
+          ],
+          "reserved_in_window": [
+            {
+              "start": "9:00am",
+              "end": "11:30am",
+              "start_min": 540,
+              "end_min": 690
+            },
+            {
+              "start": "1:00pm",
+              "end": "4:00pm",
+              "start_min": 780,
+              "end_min": 960
+            }
+          ]
         },
         "Court 04": {
           "resource_id": 356,
@@ -900,7 +955,7 @@
   },
   "summary": {
     "total_courts": 35,
-    "courts_with_reservations": 18,
-    "courts_fully_free": 17
+    "courts_with_reservations": 19,
+    "courts_fully_free": 16
   }
 }
