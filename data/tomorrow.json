@@ -1,7 +1,7 @@
 {
   "date": "2026-09-12",
-  "captured_at": "2026-09-11T12:03:48.174944-07:00",
-  "captured_at_display": "September 11, 2026 at 12:03 PM PDT",
+  "captured_at": "2026-09-11T15:21:39.106552-07:00",
+  "captured_at_display": "September 11, 2026 at 3:21 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -18,9 +18,9 @@
             },
             {
               "start": "10:00",
-              "end": "12:00",
+              "end": "10:30",
               "start_min": 600,
-              "end_min": 720
+              "end_min": 630
             },
             {
               "start": "13:00",
@@ -37,9 +37,9 @@
               "end_min": 600
             },
             {
-              "start": "12:00pm",
+              "start": "10:30am",
               "end": "1:00pm",
-              "start_min": 720,
+              "start_min": 630,
               "end_min": 780
             }
           ]
@@ -666,9 +666,15 @@
               "end_min": 600
             },
             {
-              "start": "11:30",
+              "start": "12:30",
+              "end": "17:00",
+              "start_min": 750,
+              "end_min": 1020
+            },
+            {
+              "start": "19:00",
               "end": "22:00",
-              "start_min": 690,
+              "start_min": 1140,
               "end_min": 1320
             }
           ],
@@ -681,9 +687,9 @@
             },
             {
               "start": "10:00am",
-              "end": "11:30am",
+              "end": "12:30pm",
               "start_min": 600,
-              "end_min": 690
+              "end_min": 750
             }
           ]
         },
@@ -762,8 +768,14 @@
             },
             {
               "start": "12:00",
-              "end": "22:00",
+              "end": "14:00",
               "start_min": 720,
+              "end_min": 840
+            },
+            {
+              "start": "15:00",
+              "end": "22:00",
+              "start_min": 900,
               "end_min": 1320
             }
           ],
@@ -773,6 +785,12 @@
               "end": "12:00pm",
               "start_min": 540,
               "end_min": 720
+            },
+            {
+              "start": "2:00pm",
+              "end": "3:00pm",
+              "start_min": 840,
+              "end_min": 900
             }
           ]
         }
