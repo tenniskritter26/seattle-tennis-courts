@@ -1,7 +1,7 @@
 {
   "date": "2026-09-14",
-  "captured_at": "2026-09-13T15:14:39.444479-07:00",
-  "captured_at_display": "September 13, 2026 at 3:14 PM PDT",
+  "captured_at": "2026-09-13T21:15:29.834906-07:00",
+  "captured_at_display": "September 13, 2026 at 9:15 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -601,8 +601,14 @@
             },
             {
               "start": "14:00",
-              "end": "22:00",
+              "end": "15:00",
               "start_min": 840,
+              "end_min": 900
+            },
+            {
+              "start": "17:00",
+              "end": "22:00",
+              "start_min": 1020,
               "end_min": 1320
             }
           ],
@@ -618,6 +624,12 @@
               "end": "2:00pm",
               "start_min": 780,
               "end_min": 840
+            },
+            {
+              "start": "3:00pm",
+              "end": "4:00pm",
+              "start_min": 900,
+              "end_min": 960
             }
           ]
         },
@@ -857,8 +869,14 @@
           "available_slots": [
             {
               "start": "06:00",
-              "end": "16:00",
+              "end": "08:30",
               "start_min": 360,
+              "end_min": 510
+            },
+            {
+              "start": "09:45",
+              "end": "16:00",
+              "start_min": 585,
               "end_min": 960
             },
             {
@@ -868,7 +886,14 @@
               "end_min": 1320
             }
           ],
-          "reserved_in_window": []
+          "reserved_in_window": [
+            {
+              "start": "8:30am",
+              "end": "9:45am",
+              "start_min": 510,
+              "end_min": 585
+            }
+          ]
         },
         "Court 02 \u2014 Upper": {
           "resource_id": 366,
@@ -1020,7 +1045,7 @@
   },
   "summary": {
     "total_courts": 35,
-    "courts_with_reservations": 24,
-    "courts_fully_free": 11
+    "courts_with_reservations": 25,
+    "courts_fully_free": 10
   }
 }
