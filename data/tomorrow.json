@@ -1,7 +1,7 @@
 {
   "date": "2026-09-30",
-  "captured_at": "2026-09-29T15:03:50.030688-07:00",
-  "captured_at_display": "September 29, 2026 at 3:03 PM PDT",
+  "captured_at": "2026-09-29T21:54:44.637651-07:00",
+  "captured_at_display": "September 29, 2026 at 9:54 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
@@ -12,8 +12,14 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "21:00",
+              "end": "17:00",
               "start_min": 420,
+              "end_min": 1020
+            },
+            {
+              "start": "18:00",
+              "end": "21:00",
+              "start_min": 1080,
               "end_min": 1260
             }
           ],
@@ -42,18 +48,25 @@
           "available_slots": [
             {
               "start": "07:00",
-              "end": "16:45",
+              "end": "09:00",
               "start_min": 420,
-              "end_min": 1005
+              "end_min": 540
             },
             {
-              "start": "18:45",
+              "start": "11:00",
               "end": "21:00",
-              "start_min": 1125,
+              "start_min": 660,
               "end_min": 1260
             }
           ],
-          "reserved_in_window": []
+          "reserved_in_window": [
+            {
+              "start": "9:00am",
+              "end": "11:00am",
+              "start_min": 540,
+              "end_min": 660
+            }
+          ]
         },
         "Court 02": {
           "resource_id": 1340,
@@ -299,9 +312,9 @@
               "end_min": 990
             },
             {
-              "start": "19:30",
+              "start": "20:00",
               "end": "22:00",
-              "start_min": 1170,
+              "start_min": 1200,
               "end_min": 1320
             }
           ],
@@ -751,12 +764,6 @@
               "end_min": 960
             },
             {
-              "start": "17:00",
-              "end": "18:00",
-              "start_min": 1020,
-              "end_min": 1080
-            },
-            {
               "start": "21:00",
               "end": "22:00",
               "start_min": 1260,
@@ -862,7 +869,7 @@
   },
   "summary": {
     "total_courts": 35,
-    "courts_with_reservations": 16,
-    "courts_fully_free": 19
+    "courts_with_reservations": 17,
+    "courts_fully_free": 18
   }
 }
