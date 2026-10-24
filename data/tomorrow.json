@@ -1,22 +1,16 @@
 {
   "date": "2026-10-25",
-  "captured_at": "2026-10-24T00:02:12.966154-07:00",
-  "captured_at_display": "October 24, 2026 at 12:02 AM PDT",
+  "captured_at": "2026-10-23T23:54:47.017201-07:00",
+  "captured_at_display": "October 23, 2026 at 11:54 PM PDT",
   "window": "8:00am \u2013 4:00pm",
   "parks": {
     "Bryant Playground": {
       "courts": {
         "Court 01": {
           "resource_id": 1325,
-          "status": 0,
-          "available_slots": [
-            {
-              "start": "07:00",
-              "end": "21:00",
-              "start_min": 420,
-              "end_min": 1260
-            }
-          ],
+          "status": "error",
+          "error": "('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
+          "available_slots": [],
           "reserved_in_window": []
         },
         "Court 02": {
@@ -108,23 +102,10 @@
         },
         "Court 03": {
           "resource_id": 1355,
-          "status": 0,
-          "available_slots": [
-            {
-              "start": "09:00",
-              "end": "22:00",
-              "start_min": 540,
-              "end_min": 1320
-            }
-          ],
-          "reserved_in_window": [
-            {
-              "start": "8:00am",
-              "end": "9:00am",
-              "start_min": 480,
-              "end_min": 540
-            }
-          ]
+          "status": "error",
+          "error": "HTTPSConnectionPool(host='anc.apm.activecommunities.com', port=443): Read timed out. (read timeout=15)",
+          "available_slots": [],
+          "reserved_in_window": []
         },
         "Court 04": {
           "resource_id": 1356,
@@ -704,7 +685,7 @@
   },
   "summary": {
     "total_courts": 35,
-    "courts_with_reservations": 14,
-    "courts_fully_free": 21
+    "courts_with_reservations": 13,
+    "courts_fully_free": 22
   }
 }
